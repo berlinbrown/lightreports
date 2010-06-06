@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<!-- Copyright (c) 2009 -->
+<!-- Code generated Ant Script -->
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<project name="Build File" default="compile" basedir=".">
+    <property file="build.properties" /> 
+    <property name="build.dir"            value="${basedir}/build" />
+    <property name="build.classes.dir"    value="${basedir}/build/classes" />
+    <property name="src.dir"              value="${basedir}/src" />
+    <property name="lib.dir"              value="${basedir}/../../lib" />
+    <property name="lib.pdf.dir"          value="${basedir}/../../lib/pdf" />
+
+<target name="help" description="Initialization">
+	        <tstamp/>
+			<echo>
+ Additional Targets and Usage:
+ -----------------
+ compile - to compile the source, use this target.  
+           To build the  complete release package, 
+           you must compile this manually.
+
+</echo>
+	</target>
+	
+    <path id="classpath">
+    	<pathelement location="${lib.pdf.dir}/minium.jar"        />
+    	<pathelement location="${lib.pdf.dir}/tagsoup-1.2.jar"   />
+    	<pathelement location="${lib.pdf.dir}/core-renderer.jar" />
+    	<pathelement location="${lib.pdf.dir}/xercesImpl.jar"    />
+    	<pathelement location="${lib.dir}/swt/win32/swt.jar"     />
+    	<pathelement location="${build.classes.dir}" />
+    </path>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Prepare -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="prepare" depends="help">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Compile -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="compile" depends="prepare">
+        <javac deprecation="true"
+                target="1.5"
+                srcdir="${src.dir}"
+        		debug="true"
+                destdir="${build.classes.dir}">
+        	
+        	<!-- ;;;; MISC EMPTY MOCK OBJECT WRAPPERS ;;;; -->        	        	
+        	<include name="javax/servlet/http/HttpSession.java" />
+			<include name="javax/servlet/http/HttpServlet.java" />
+        	<include name="javax/servlet/http/HttpServletRequest.java" />
+        	                	        		
+        	<!-- ;;;; SWT java classes ;;;; -->
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+		
+	<target name="run.gui" depends="clean,compile">
+		<java classname="com.ca.util.gui.SimplePFSXHtmlPDFWin">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->		
+    <!-- Target: Build -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="jar" depends="compile">	  
+    </target>
+   
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Main Clean -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+</project>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<!-- Copyright (c) 2009 -->
+<!-- Code generated Ant Script -->
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<project name="Build File" default="help" basedir=".">
+    <property file="build.properties" /> 
+    <property name="build.dir"            value="${basedir}/build" />
+    <property name="build.classes.dir"    value="${basedir}/build/classes" />
+	<property name="build.output.dir"     value="${basedir}/build/output" />
+    <property name="src.dir"              value="${basedir}/src" />
+
+<target name="help" description="Initialization">
+	        <tstamp/>
+			<echo>
+ Additional Targets and Usage:
+ -----------------
+ compile - to compile the source, use this target.  
+           To build the  complete release package, 
+           you must compile this manually.
+
+</echo>
+	</target>
+	
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Classpath -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <path id="classpath">
+        <pathelement location="${basedir}/../../lib/antlr/antlr-3.1.2.jar" />
+    </path>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Prepare -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="prepare" depends="help">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+    	<mkdir dir="${build.output.dir}"/>
+    </target>	
+   
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->     
+    <!-- Target: Antlr  -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<target name="antlr" depends="prepare">
+	    <java classname="org.antlr.Tool">	        	        
+	        <classpath refid="classpath" />
+	    		    	
+	    	<arg value="${basedir}/AdderTrees.g" />
+	    	<arg value="-o" />
+	    	<arg value="${build.output.dir}" />
+	    </java>
+    </target>
+	
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->     
+    <!-- Target: Antlr/Compile  -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="antlr.compile" depends="prepare">
+        <javac deprecation="true"
+            target="1.5"
+            srcdir="${basedir}/build/output"
+            destdir="${build.classes.dir}"
+            includes="**/*.java" >
+            <classpath refid="classpath" />            
+            </javac>
+    </target>
+	
+    <target name="antlr.run" depends="antlr.compile">
+        <java classname="AdderMain">
+            <classpath refid="classpath" />
+            <classpath>
+                <pathelement location="${basedir}" />
+                <pathelement location="${build.classes.dir}" />
+                </classpath>
+            	
+            	<arg value="1 + 2" />
+            	
+            </java>    	        	    
+    </target>
+    	
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Main Clean -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+</project>

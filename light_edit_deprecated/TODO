@@ -1,0 +1,16 @@
+#####################################################################
+ Light Text Editor (LTEC) README
+ 
+ Light is a simple text editor in clojure
+#####################################################################
+
+	+ 3/6/2009	Berlin Brown
+		* Taking xhtmlrenderer out of CVS head
+		* Add utilities for converting tabs to spaces, remove end white space etc. 
+
+	+ 3/5/2009	Berlin Brown
+		* Possibly add chat bot and chat server libraries
+		* HTML to PDF
+		* Ability to save documents
+		* Add Kanji support
+		

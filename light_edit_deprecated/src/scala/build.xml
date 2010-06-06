@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<!-- Copyright (c) 2009 -->
+<!-- Code generated Ant Script -->
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<project name="Build File" default="help" basedir=".">
+	<property file="build.properties" />
+	<property name="build.dir"            value="${basedir}/build" />
+	<property name="build.classes.dir"    value="${basedir}/build/classes" />
+	<property name="src.dir"              value="${basedir}/src" />
+
+	<target name="help" description="Initialization">
+		<tstamp/>
+		<echo>
+ Additional Targets and Usage:
+ -----------------
+ compile - to compile the source, use this target.  
+           To build the  complete release package, 
+           you must compile this manually.
+
+</echo>
+	</target>
+
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Target: Classpath -->
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<path id="classpath">
+		<pathelement location="${basedir}/../../lib/antlr/antlr-3.1.2.jar" />
+		<pathelement location="${basedir}/../../lib/scala/lib/scala-compiler.jar" />
+		<pathelement location="${basedir}/../../lib/scala/lib/scala-library.jar" />
+		<pathelement location="${basedir}/../../lib/httpclient/httpcore-4.0.jar" />
+		<pathelement location="${basedir}/../../lib/httpclient/httpclient-4.0-beta2.jar" />
+		<pathelement location="${basedir}/../../lib/httpclient/commons-logging-1.1.1.jar" />
+		<pathelement location="${basedir}" />
+		<pathelement location="${build.classes.dir}" />
+	</path>
+
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Target: Prepare -->
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<target name="prepare" depends="help">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes.dir}"/>
+	</target>
+
+	<taskdef resource="scala/tools/ant/antlib.xml">
+		<classpath refid="classpath" />
+	</taskdef>
+
+	<!-- Target: Compile Scala Source -->
+	<target name="scala.compile" depends="prepare">
+		<scalac srcdir="${src.dir}" 
+		    destdir="${build.classes.dir}" 
+		    classpathref="classpath" 
+		    force="never">
+			<include name="**/*.scala"/>
+		</scalac>
+	</target>
+
+	<target name="scala.run" depends="scala.compile">
+		<java classname="Client">
+			<classpath refid="classpath" />
+		</java>
+	</target>
+
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Main Clean -->
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+</project>

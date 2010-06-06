@@ -1,0 +1,22 @@
+# test file for keyword expansion.
+#
+# keyword list from Version Management with CVS - the CVS manual
+# 
+# $Author: pdoubleya $
+# $CVSHeader
+# $Date: 2004/10/14 13:03:59 $
+# $Header: /cvs/xhtmlrenderer/temp/cvs-keyword-expansion.txt,v 1.2 2004/10/14 13:03:59 pdoubleya Exp $
+# $Id: cvs-keyword-expansion.txt,v 1.2 2004/10/14 13:03:59 pdoubleya Exp $
+# $Name:  $
+# $Locker:  $
+# $Log: cvs-keyword-expansion.txt,v $
+# Revision 1.2  2004/10/14 13:03:59  pdoubleya
+# Removed duplicate keyword list.
+#
+# Revision 1.1  2004/10/14 13:03:11  pdoubleya
+# Added to CVS.
+#
+# $Revision: 1.2 $
+# $Source: /cvs/xhtmlrenderer/temp/cvs-keyword-expansion.txt,v $
+# $State: Exp $
+

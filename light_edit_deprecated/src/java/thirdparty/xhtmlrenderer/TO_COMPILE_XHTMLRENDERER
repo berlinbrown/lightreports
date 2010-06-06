@@ -1,0 +1,5 @@
+To compile xhtmlrenderer,
+
+simply launch the ant script at a command prompt:
+
+$ant 

@@ -1,0 +1,134 @@
+#####################################################################
+ Light Text Editor (LTEC) CHANGELOG
+ 
+ Light is a simple text editor in clojure
+#####################################################################
+
+    + 3/21/2009  Berlin Brown
+        * Added mac support
+
+	+ 3/9/2009	Berlin Brown		
+		* Add ability to convert XHTML to PDF document, but also support for HTML to PDF conversion
+		* Ability to save documents
+		* Fixed light.sh script for linux.  Light editor for mac may still not work properly	
+		* Added source for XHTMLRenderer, for custom modifications for XHTML to PDF conversion
+		* Created ability to save recent file list, added
+			recent files to menu options.
+		* Added most recently opened buffer list 
+			(essentially a recent file list)
+
+	+ 1/16/2009 Berlin Brown	berlin dot brown at 
+		* Add tabbed buffer windows
+		* Added status bar 
+		* Added ability to read file info properties
+		* Added file monitoring (tail like functionality)
+
+	
+	+ 2/15/2009	Berlin Brown
+		* Test cases, documentation
+		* Keystrokes
+		* Add system properties definition
+		* USE JAVA NIO for large files
+		
+		FEATURES COMPLETED:
+			1. Keystrokes and quick keys (see the simple accelerators)
+			2. Finish search
+				- Find Box
+				- Finish Regex Search
+			5. Open Jars (+), Open Zip Files
+			9. Dynamic Styled Text (?) 
+			12. New find file dialog box
+			13. Ability to run External Scripts
+			15. Easily Swap Buffers
+			16. Bug Fixes
+
+	+ 2/8/2009	Berlin Brown
+		* Avoid the following shortcuts, but add many quick keys
+			http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
+			- Shortcut - Quick search			
+			- Shortcut - add to notes
+			- Shortcut - Open explorer
+			- Shortcut - Open database view
+		* Open explorer on current working directory 
+		* Database viewer, search and replace at command line
+			
+	+ 2/7/2009 	Berlin Brown
+		* More work on PDF Creator Tool
+		
+	+ 2/2/2009 	Berlin Brown
+		* Convert XHTML/HTML to PDF
+		* Add quick search tools, etc
+			- Quick Find in Files/Grep
+			- Quick Find in Files/Grep - last 15 minutes
+			- Quick Find in Files/Grep - last 2 hours
+			- Quick Find Java Files/Grep
+			- Quick Find Log Files/Grep
+
+		* Code gen  java / unit tests
+
+	find . -mtime 0   # find files modified between now and 1 day ago
+       	# (i.e., within the past 24 hours)
+
+	+ 1/29/2009 	Berlin Brown
+
+		* Add memory, heap usage		
+		* Advanced database viewer
+		* Grep/Find tools for directories, E.g. quick access to common html/sql directories
+		* Database viewer for html sql directories
+	
+		* Search in 'Files' tool
+			- Open directory will print a list of all the files to the main directory
+			- Then use 'find in directory' dialog box
+				Also have the option for 'grep' in directory
+	
+	+ 1/20/2009 Berlin Brown	berlin dot brown at 
+		* With the standalone win32 tools, have it launch
+			standard linux tools: 'ls', 'find', 'grep', 'sed', 'awk', 'diff' 
+				(change the names, no conflicts)
+					
+		* Search Menu has the following items
+			1. Find 
+			2. Regex Search Tool
+			3. Goto Line
+		* Possible EDIT options and
+			1. Change Case all upper or all lower
+		* Visible Spaces
+		* Document Properties Dialog Box
+		* Preferences Screen with Editable Table
+		* End of File Detection with graphic (line?)
+
+		* Documentation - User Manual, Features/Requirements, Technical Spec
+		* Script tool, ability to add search scripts
+				Could be used for:
+					1. Loading a file (agents?) and searching all the lines and see if the text appears in the
+						document.
+					2. Normal search (search "stuff")
+					3.  (open file) (seach "stuff")
+					4. Highlight with different colors, etc.
+					
+		* Canned scripts		
+		* The regex screen will include:
+			1. Editor Screen
+			2. Example text, example log file
+
+	+ 1/18/2009 Berlin Brown	berlin dot brown at 
+		* With the database viewer, add ability to pair up files.
+			For example, System Out and System Err could
+			be paired together. 
+		* Add database file in simple XML parse file, 
+			and then 'jar' zip the file.
+		* Add JAR file viewer, with package management, etc.
+		* Jar file viewer
+		* Add file/text file database to quickly access important text documents.
+			-------------
+			File Database for Dialog
+			-------------
+			name, end of path, group, server, short description.
+			
+		* Regex helper tool with possible incremental search and other searches
+		* Grep like functionality to search only the active buffers in the 
+			information database.			
+			
+	+ 1/5/2009 Berlin Brown (initial coding)
+
+

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<!-- Copyright (c) 2009 -->
+<!-- Code generated Ant Script -->
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<project name="Build File" default="jar" basedir=".">
+    <property file="build.properties" /> 
+    <property name="build.dir"            value="${basedir}/build"/>
+    <property name="build.classes.dir"    value="${basedir}/build/classes"/>
+    <property name="src.dir"              value="${basedir}/src"/>
+    <property name="lib.dir"              value="${basedir}/../../lib"/>
+
+<target name="help" description="Initialization">
+	        <tstamp/>
+			<echo>
+ Additional Targets and Usage:
+ -----------------
+ compile - to compile the source, use this target.  
+           To build the  complete release package, 
+           you must compile this manually.
+
+</echo>
+	</target>
+	
+    <path id="classpath">
+    	<pathelement location="${lib.dir}/" /> 
+    	<pathelement location="${lib.dir}/clojure.jar" />
+    	<pathelement location="${lib.dir}/swt/win32/swt.jar" />
+    	<pathelement location="${lib.dir}/jline-0.9.94.jar" />
+    	<pathelement location="${lib.dir}/swt/linux/swt.jar" /> 
+    	
+    	<!--Spring Libraries -->
+    	<pathelement location="${lib.dir}/spring/spring-custom.jar" />
+    	
+    	<!-- PDF Libraries -->
+    	<pathelement location="${lib.dir}/pdf/core-renderer.jar" />
+    	<pathelement location="${lib.dir}/pdf/minium.jar" />
+    	<pathelement location="${lib.dir}/pdf/xml-apis-xerces-2.9.1.jar" />
+    	<pathelement location="${lib.dir}/pdf/iText-2.0.8.jar" />
+    	
+    </path>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Prepare -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="prepare" depends="help">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Compile -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="compile" depends="prepare">
+        <javac deprecation="true"
+                target="1.5"
+                srcdir="${src.dir}"
+                destdir="${build.classes.dir}"
+                includes="com/light/**/*.java" >
+            <classpath refid="classpath"/>            
+        </javac>
+    </target>
+	
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Run -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="run.driver" depends="compile">
+    	<java classname="com.light.network.proxy.driver.ProxyServerDriver">
+			<classpath refid="classpath" />
+			<classpath>
+				<pathelement location="${basedir}" />
+				<pathelement location="${build.classes.dir}" />
+			</classpath>    	            
+			<arg value="${basedir}/WEB-INF/classes/version.properties"/>            
+		</java>
+    </target>
+	
+    <target name="run.decompress" depends="compile">
+    	<java classname="com.light.util.zip.UncompressInputStream">
+			<classpath refid="classpath" />
+			<classpath>
+				<pathelement location="${basedir}" />
+				<pathelement location="${build.classes.dir}" />
+			</classpath>    	            
+			<arg value="C:/temp/native_stderr.log.090216060203.Z" />
+		</java>
+    </target>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->		
+    <!-- Target: Build -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="jar" depends="compile">
+    	<jar destfile="${build.dir}/light_commons.jar">
+    	    <fileset dir="${build.classes.dir}" includes="**/*.class" />
+		</jar>    		
+    </target>
+	
+	
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->		
+    <!-- Target: Deploy -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="deploy" depends="jar">
+		<copy file="${build.dir}/light_commons.jar" tofile="${basedir}/../../lib/light_commons.jar" />    	
+    </target>
+			
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Main Clean -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+    
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- End of Document -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->	    
+</project>
