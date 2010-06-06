@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<octane_file_database>
+<description>
+<![CDATA[
+Linux Log Files, including Apache2 access and error logs
+]]>
+</description>
+<file_set>
+  <!-- First file definition -->  
+  <db_file>
+	<file_name>
+	  Apache2 directory
+	</file_name>
+	<file_path>
+	  /var/log/apache2
+	</file_path>
+	<file_group>
+	  Apache
+	</file_group>
+	<file_server>
+	  localhost
+	</file_server>
+	<file_descr>
+	  Apache Access Logs
+	</file_descr>	
+  </db_file>
+
+  <db_file>
+	<file_name>
+	  access.log
+	</file_name>
+	<file_path>
+	  /var/log/apache2/access.log
+	</file_path>
+	<file_group>
+	  Apache
+	</file_group>
+	<file_server>
+	  localhost
+	</file_server>
+	<file_descr>
+	  Apache Access Logs
+	</file_descr>	
+  </db_file>
+
+  <db_file>
+	<file_name>error.log</file_name>
+	<file_path>/var/log/apache2/error.log</file_path>
+	<file_group>Apache</file_group>
+	<file_server>localhost</file_server>
+	<file_descr>Apache Error Logs</file_descr>	
+  </db_file>
+
+  <db_file>
+	<file_name>dmesg</file_name>
+	<file_path>/var/log/dmesg</file_path>
+	<file_group>Startup</file_group>
+	<file_server>localhost</file_server>
+	<file_descr>Dmesg startup file</file_descr>	
+  </db_file>
+
+  <db_file>
+	<file_name>messages</file_name>
+	<file_path>/var/log/messages</file_path>
+	<file_group>Startup</file_group>
+	<file_server>localhost</file_server>
+	<file_descr>Linux Messages Log</file_descr>	
+  </db_file>
+</file_set>
+</octane_file_database>
+

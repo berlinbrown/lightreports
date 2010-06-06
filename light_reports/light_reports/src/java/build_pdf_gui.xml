@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<!-- Copyright (c) 2009 -->
+<!-- Code generated Ant Script -->
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<project name="Build File" default="compile" basedir=".">
+    <property file="build.properties" /> 
+    <property name="build.dir"            value="${basedir}/build" />
+    <property name="build.classes.dir"    value="${basedir}/build/classes" />
+    <property name="src.dir"              value="${basedir}/src" />
+    <property name="lib.dir"              value="${basedir}/../../lib" />
+    <property name="lib.pdf.dir"          value="${basedir}/../../lib/newpdf" />
+
+<target name="help" description="Initialization">
+	        <tstamp/>
+			<echo>
+ Additional Targets and Usage:
+ -----------------
+ compile - to compile the source, use this target.  
+           To build the  complete release package, 
+           you must compile this manually.
+
+</echo>
+	</target>
+	
+    <path id="classpath">
+    	<pathelement location="${lib.pdf.dir}/minium.jar"        />
+    	<pathelement location="${lib.pdf.dir}/tagsoup-1.2.jar"   />
+    	<pathelement location="${lib.pdf.dir}/core-renderer.jar" />
+    	<pathelement location="${lib.pdf.dir}/xml-apis-xerces-2.9.1.jar"   />
+    	<pathelement location="${lib.pdf.dir}/iText-2.0.8.jar"     />
+    	<pathelement location="${lib.dir}/swt/3.5/win32/swt-debug.jar"     />
+    	<pathelement location="${build.classes.dir}" />
+    </path>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Prepare -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="prepare" depends="help">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Compile -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="compile" depends="prepare">
+        <javac deprecation="true"
+                target="1.5"
+                srcdir="${src.dir}"
+        		debug="true"
+                destdir="${build.classes.dir}">
+        	
+        	<!-- ;;;; MISC EMPTY MOCK OBJECT WRAPPERS ;;;; -->
+        	<include name="javax/servlet/http/HttpSession.java" />
+			<include name="javax/servlet/http/HttpServlet.java" />
+        	<include name="javax/servlet/http/HttpServletRequest.java" />
+        	        	
+        	<include name="com/toolkit/util/pdf/XHTMLParserFactory.java" />
+        	
+        	<include name="com/toolkit/util/pdf/HomeITextUserAgent.java" />
+        	<include name="com/toolkit/util/pdf/ITextRenderer.java" />
+        	<include name="com/toolkit/util/pdf/XHTMLRendererText.java" />
+        	<include name="com/toolkit/util/pdf/XHTMLRendererBase.java" />        
+        	<include name="com/toolkit/util/pdf/filter/Parser.java" />
+        	<include name="com/toolkit/util/driver/PDFCreateMain.java" />
+        	        		
+        	<!-- ;;;; SWT java classes ;;;; -->
+        	<include name="com/toolkit/util/gui/SimpleXHtmlPDFWin.java"  />        
+        	<include name="com/toolkit/util/gui/XHtmlPDFUtil.java"  />
+        	<include name="com/toolkit/util/gui/HtmlPDFWinAdapters.java"  />
+        	<include name="com/toolkit/util/gui/XHtmlPDFWinTemplates.java"  />
+        	<include name="com/toolkit/util/gui/XHtmlPDFWinProcess.java"  />
+			<include name="com/toolkit/util/gui/XHtmlPDFWinThread.java"  />
+        	<include name="com/toolkit/util/gui/WinPDFSettings.java"  />
+        	        	        	
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+		
+	<target name="run.gui" depends="clean,compile">
+		<java classname="com.toolkit.util.gui.SimpleXHtmlPDFWin">
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->		
+    <!-- Target: Build -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="jar" depends="compile">	  
+    </target>
+   
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Main Clean -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+</project>

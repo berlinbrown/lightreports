@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<octane_file_database>
+	<description>
+		<![CDATA[
+			Database File
+		]]>
+	</description>
+	<!-- ******************************************************** -->
+	<!--  Database System File, loaded by Octane Viewer      -->
+	<!--  Date: 2/10/2009                                    -->
+	<!--  This file contains a listing of file paths for quick access  -->
+	<!-- ******************************************************** -->	
+	<file_set>
+		<!-- ******************************************************** -->
+		<!--  Local Log Files -->
+		<!-- ******************************************************** -->
+		<db_file>
+			<file_name>Server.xml [local]</file_name>
+			<file_path>
+				C:\Program Files\profiles\AppSrv01\config\cells\userNode02Cell\nodes\userNode02\servers\server1\server.xml
+			</file_path>
+			<file_group>Group</file_group>
+			<file_server>localhost</file_server>
+			<file_descr>Local server.xml configuration</file_descr>
+		</db_file>
+
+		<db_file>
+			<file_name>TomcatOutput [local]</file_name>
+			<file_path>
+				C:\Program Files\profiles\AppSrv01\logs\server1\Tomcat_Output.log
+			</file_path>
+			<file_group>Group</file_group>
+			<file_server>localhost</file_server>
+			<file_descr>System out local profile</file_descr>
+		</db_file>
+
+		<db_file>
+			<file_name>Tomcat_Error [local]</file_name>
+			<file_path>
+				C:\Program Files\profiles\AppSrv01\config\cells\userNode02Cell\nodes\userNode02\servers\server1\SystemErr.log
+			</file_path>
+			<file_group>Group</file_group>
+			<file_server>localhost</file_server>
+			<file_descr>System err local profile</file_descr>
+		</db_file>
+
+		<!-- ******************************************************** -->
+		<!--  SYSTEM OUT - Dev and otherlog files -->
+		<!-- ******************************************************** -->
+
+		<db_file>
+			<file_name>Tomcat_Err.log</file_name>
+			<file_path>
+				\\serv01\logs\set\tomcat_err.log
+			</file_path>
+			<file_group>Group</file_group>
+			<file_server>Server2</file_server>
+			<file_descr>Error log file</file_descr>
+		</db_file>
+		<db_file>
+			<file_name>Tomcat.log</file_name>
+			<file_path>
+				\\serv01\logs\set\tomcat.log
+			</file_path>
+			<file_group>Group</file_group>
+			<file_server>Server1</file_server>
+			<file_descr>Console log file</file_descr>
+		</db_file>
+
+		<!-- ******************************************************** -->
+		<!--  End of File == Set  -->
+		<!-- ******************************************************** -->	
+	</file_set>
+	
+</octane_file_database>
+

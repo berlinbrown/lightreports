@@ -1,0 +1,182 @@
+###############################################################################
+#
+# TODO file for the Octane Viewer
+# Berlin Brown
+#
+###############################################################################
+
+	+ 5/27/2010
+		* Adding ability to render the active buffer.
+		* Add text replacements, standard templating
+		      __LIGHT_DATE1__
+		      __LIGHT_DATE2__
+		      __LIGHT_DATE3__
+
+	+ 5/20/2010
+		* Add simple reporting, convert HTML to PDF.
+	
+	===================================================		
+	= 5/25/2010 - begin development on light reports
+	===================================================		
+	
+	+ 6/23/2009
+		* Fix the graphing system for native error
+		* Add a graph of the database log, queries run 	
+		* Swing based ant build script to deploy the application
+		* Fix the garbage collection not displaying due to bad XML  
+		* Major bug fixes
+		* Humanize date time
+		* Possible unix commands
+		* Move database file to classpath
+		* Put arrow quick key on location bar, quick
+			key through the database file.
+		* Quick database file
+		* Remove tabs, convert tabs to spaces
+		* Remove end spaces
+		* Search statistics
+		* Colorize log file
+		* Show number of lines in a file
+		* Quick Merge Files Together
+		* Filter only the lines that have search terms and which
+			line number
+		* Have an additional merger but no true merge
+		* Print number of lines in buffer
+		* Application to change the global variables
+		* Print HTTP headers with browser
+		* Add tip as help HTML file to browse
+		* Add ability to navigate to log files, simple keyboard interface
+
+	+ 6/12/2009
+		* Possble http web server
+		* swing based install tool, see start
+		* Add test runner tool
+		* Fix find/search
+		* Refactor windows, do not use endless loop
+		* Bug - clear matchers after searching when opening file
+		* Bug - memory issue, test with files greater than 10mb and 
+	            then do a find
+		* Open file by the jar type 
+
+	+ 6/11/2009
+		* Fix the merge file. !
+		* Add dynamic loading of jars to reduce startup time.
+		* Add test tool workspace
+		* Add clojure 1.0 !
+		* Show heap usage !
+		* Save history to file ! 
+		* Save the garbage collection information to output
+		
+	+ 4/12/2009
+		* Extract
+		* Add gnu tool search to archive search 
+		* Complete archive search
+		* Add high level exception handler
+		* Bug with merge file, when log file is too short may give error
+	
+	+ 4/4/2009
+		* Add buttons to merge log file:
+			Merge Files
+			Add File
+			Close 
+			Columns - Filename						
+
+	+ 3/31/2009
+		* Convert tabs to spaces
+		* Resolve Bug with Database Viewer
+		* Add functionality to MERGE log files together based on a timestamp.
+			Log Tool - look at the timestamp, detect log file type
+			Table View
+			Browse/Add File to Merge
+			Save New File As		
+			Prepend text to start of file
+			Keep the format ascii database view
+			Delete Entry, Etc
+			Automatic directory detect, add to merge database
+	
+		* Add wiki documentation template.
+		* Revisit the command console
+		* Database of Databases
+
+	+ 2/24/2009
+		* Initial release !!
+		* Add code for note taking
+		* Add code for ARCHDEF database
+		* Add Select ALL
+		* Add flash demo, possible integrate
+			flash server.
+		* Add cmd.exe popup
+		* bsd brk NPE 
+
+	+ 2/15/2009	Berlin Brown
+		* Test cases, documentation
+		* Keystrokes
+		* Add system properties definition
+		* USE JAVA NIO for large files
+		
+		FEATURES NOT COMPLETE, first release:
+			1. Scripts (X)
+			2. Web documentation (X)
+			3. Web server / app server (X)
+			4. Better code generation (add junit, clojure test, etc)
+			5. Go to line
+
+		FEATURES MUST COMPLETE:
+			1. Keystrokes      (+)
+			2. Finish search   (+)
+				- Find Box
+				- Finish Regex Search
+			3. Analytics       (!)
+			4. Doc - XML -> XSL (? later)
+			5. Open Jars (+), Open Zip Files
+			6. Open large files (?) - might limit opening large files, java nio
+				Possible max of 28MB
+			7. Log4j (very careful) ??
+			8. Timeout/Alarm long running processes
+			9. Dynamic Styled Text (?) 
+			10. Install Tool
+			11. (optional Classpath Tool) 
+			12. New find file (!)
+			13. Script  (+)
+			14. Search Statistics (+)
+			15. Swap Buffers (+)
+			16. Bug Fixes
+
+	+ 2/14/2009	Berlin Brown	
+		* Output data to text buffer
+			E.g. that will be used with chart.
+			- Keyword Exception search
+			- Data related every two minutes
+
+	+ 2/12/2009     Berlin Brown
+		* Big file split, possibly with Java tool
+		* Jetty Server or simple server for
+			simple application.
+
+	+ 2/8/2009	Berlin Brown
+		* Avoid the following shortcuts:
+			http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
+			- Shortcut - Quick search			
+			- Shortcut - add to notes
+			- Shortcut - Open explorer
+			- Shortcut - Open database view
+
+		* Add 'Run' Tools menu option,
+		  where the 'server' tools are found
+		* Add 'Graphs' sections
+		* Add 'Analytics' menu option
+		* Possibly add a 'command line' interface to the app
+		* Add quick keys (emacs based)
+		* Open explorer on current working directory 
+		* Database viewer, search and replace at command line
+		* NOTE taker (new tab)
+			
+	+ 2/7/2009 	Berlin Brown
+		* JETTY web server
+		* PDF Creator Tool
+						
+
+
+	
+###################	
+# End of File
+###################	

@@ -1,0 +1,16 @@
+###############################################################################
+#
+# README for Java Compile
+#
+###############################################################################
+
+ant run.start
+
+Invoke the following to build the PDF library:
+
+ant -f build_pdf_gui.xml
+
+And then, to deploy 
+
+ant deploy
+

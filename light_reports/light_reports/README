@@ -1,0 +1,26 @@
+###################################
+
+ Light Log Viewer is a text viewer for viewing and analyzing 
+ log files created by Java and J2EE applications.
+
+###################################
+ Author and Contact : Berlin Brown (initial release) 
+ Date               : 2/17/2009
+ 					: updated : 7/15/2009
+###################################
+
+###################################
+  Usage:
+###################################
+
+  Place the octane directory such that HOME is placed at :
+  
+  C:\usr\local\projects\light_logs
+  
+  And click on the light_logs.bat batch script.
+ 
+  (Note: make sure that at least JRE 1.5 is installed)
+
+Source for xhtmlrenderer:
+
+https://xhtmlrenderer.dev.java.net/source/browse/xhtmlrenderer/

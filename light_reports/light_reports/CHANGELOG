@@ -1,0 +1,176 @@
+###############################################################################
+#
+# CHANGELOG file for the Light Report
+# Berlin Brown
+#
+###############################################################################
+	
+	+ 5/27/2010
+        * Adding ability to render the active buffer.        
+        
+	+ 5/20/2010
+		* Converting over to new version
+		  of 
+		* Added new version of clojure, (Clojure 1.1 Dec 31, 2009)		
+		* Added new PDF parser files, compiled code (xhtmlrenderer, flying saucer) Release R8pre2, Jan 27, 2008, (latest CVS revison: 2009/02/08))
+		* Added new version of SWT, swt-3.5.2, 3.5.2 Final Release - 26 February 2010
+	
+	===================================================		
+	= 5/25/2010 - begin development on light reports
+	===================================================		
+	
+	+ 7/15/2009
+		* Fix the graphing system for native error		 		
+		* Fix the garbage collection not displaying due to bad XML  
+		* Major bug fixes				
+		* Move database file to classpath		
+		* Quick database file	
+		* Remove end spaces		
+		* Colorize log file
+		* Show number of lines in a file
+		* Quick Merge Files Together
+		* Filter only the lines that have search terms and which
+			line number
+		* Have an additional merger but no true merge (cat utility)
+		* Print number of lines in buffer
+	
+	+ 6/12/2009
+		* Added simple http web server (non functioning)		
+		* Add test runner tool
+		* Fix find/search
+		* Refactor windows, do not use endless loop
+		* Fixed: Bug - clear matchers after searching when opening file
+		* Fixed: Bug - memory issue, test with files greater than 10mb and 
+	            then do a find
+		* Open file by the jar type
+
+	+ 6/11/2009
+		* Fix the merge file.
+		* Add dynamic loading of jars to reduce startup time.
+		* Add test tool workspace
+		* Add clojure 1.0
+		* Show heap usage
+		* Save history to file
+		* Save the garbage collection information to output
+		
+	+ 4/12/2009
+		* Extract
+		* Add gnu tool search to archive search 			
+		* Fixed: Bug with merge file, when log file is too short may give error
+				
+	+ 6/12/2009
+		* INSTALLER application
+		* custom junit
+
+	+ 6/11/2009
+		* 6/11/2009 release
+		* Add clojure 1.0
+		* (note: 	octane_core_widgets, to add tools menu items
+					also change configuration file, user.properties)
+		* Fix the merge file.		
+		* Show heap usage
+		* Save history to file
+		
+	+ 4/10/2009	Berlin Brown - release changes
+		* Add buttons to merge log file:
+			Merge Files
+			Add File
+			Close 
+		* Resolve Bug with Database Viewer
+		* Add wiki documentation template.
+		* Add Select ALL
+		* Add cmd.exe popup
+		* Test cases, documentation
+		* Keystrokes
+		* Add system properties definition
+		* USE JAVA NIO for large files		
+			5. Open Jars (+), Open Zip Files
+			6. Open large files (?) - might limit opening large files, java nio
+				Possible max of 28MB
+			15. Swap Buffers (+)
+			16. Bug Fixes
+		* Add 'Graphs' sections
+		* Add 'Analytics' menu option
+		* Possibly add a 'command line' interface to the app
+		* Add quick keys (emacs based)
+		* Open explorer on current working directory 
+		* Database viewer, search and replace at command line
+					
+		* PDF Creator Tool		
+		* Convert XHTML/HTML to PDF
+		* Add quick search tools, etc
+			- Quick Find in Files/Grep
+			- Quick Find in Files/Grep - last 15 minutes
+			- Quick Find in Files/Grep - last 2 hours
+			- Quick Find Java Files/Grep
+			- Quick Find Log Files/Grep
+
+		* Code gen  java / unit tests
+		* Add memory						
+		* Advanced database viewer
+		* Search arrow up and down for history
+		* Grep/Find tools for directories, E.g. quick access to common html/sql directories
+		* Database viewer for html sql directories
+		* Diff tool for prod, test, etc.	
+		* Search in 'Files' tool
+			- Open directory will print a list of all the files to the main directory
+			- Then use 'find in directory' dialog box
+				Also have the option for 'grep' in directory
+		* With the standalone win32 tools, have it launch
+			standard linux tools: 'ls', 'find', 'grep', 'sed', 'awk', 'diff' 
+				(change the names, no conflicts)				
+		* (bug-fix) Escape 'regex' characters		
+		* Search tool
+		* Regex builder,  new screen
+		* Document Properties Dialog Box
+		* Documentation - User Manual, Features/Requirements, Technical Spec
+		* Script tool, ability to add search scripts
+				Could be used for:
+					1. Loading a file (agents?) and searching all the lines and see if the text appears in the
+						document.
+					2. Normal search (search "stuff")
+					3.  (open file) (seach "stuff")
+					4. Highlight with different colors, etc.					
+		* Canned scripts		
+		* The regex screen will include
+			1. Editor Screen
+			2. Example text, example log file
+			3. canned queries  <deprecated>
+				(optional), Regex code generator.  					
+		* With the database viewer, add ability to pair up files.
+			For example, System Out and System Err could
+			be paired together. 
+		* Add database file in simple XML parse file, 
+			and then 'jar' zip the file.
+		* Add JAR file viewer, with package management, etc.
+		* Jar viewer and ASM class viewer.
+		* Add file/text file database.
+			name, end of path, group, server, short description.			
+		* Add analytics tools for data mining and collective intelligence.
+		* Regex helper tool with possible incremental search.
+		
+ 	+ 1/19/2009 Berlin Brown	berlin dot brown at 
+		* Added database viewer  	
+		* Created simple 'find' dialog box
+	
+	+ 1/17/2009 Berlin Brown	berlin dot brown at 
+		* Created ability to save recent file list, added
+			recent files to menu options.
+		* Added most recently opened buffer list 
+			(essentially a recent file list)
+
+	+ 1/16/2009 Berlin Brown	berlin dot brown at 
+		* Add tabbed buffer windows
+		* Added status bar 
+		* Added ability to read file info properties
+		* Added file monitoring (tail like functionality)
+
+	+ 1/15/2009	Berlin Brown	berlin dot brown at 
+		* Reorganized library, split out functions in to separate files.
+
+	+ 1/5/2009	Berlin Brown	berlin dot brown at 
+		* Added initial import of search code
+
+###################	
+# End of File     #
+###################

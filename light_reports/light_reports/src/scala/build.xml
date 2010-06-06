@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<!-- Copyright (c) 2009 -->
+<!-- Octane/Light Logs build script for building the java source -->
+<!-- The PDF library java source are excluded -->
+<!-- Also see build_pdf_gui.xml -->
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<project name="Build File" default="jar" basedir=".">
+	
+    <property file="build.properties" /> 
+    <property name="build.dir"            value="${basedir}/../java/build" />
+    <property name="build.classes.dir"    value="${basedir}/../java/build/classes" />
+	
+    <property name="src.dir"              value="${basedir}/src"/>
+    <property name="lib.dir"              value="${basedir}/../../lib"/>	
+	
+<target name="help" description="Initialization">
+	        <tstamp/>
+			<echo>
+ Additional Targets and Usage:
+ -----------------
+ compile - to compile the source, use this target.  
+           To build the  complete release package, 
+           you must compile this manually.
+
+</echo>
+	</target>
+	
+    <path id="classpath">
+    	<pathelement location="${lib.dir}/" />
+        <pathelement location="${lib.dir}/scala/scala280r3/scala-compiler.jar" />
+        <pathelement location="${lib.dir}/scala/scala280r3/scala-library.jar" />    	    	       	   
+    </path>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Prepare -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="prepare" depends="help">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.classes.dir}" />
+    	<mkdir dir="${build.classes.dir}/conf" />
+    </target>
+
+    <taskdef resource="scala/tools/ant/antlib.xml">
+            <classpath refid="classpath" />
+    </taskdef>
+	
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Compile -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="compile" depends="prepare">
+    	 <scalac srcdir="${src.dir}"
+    	    destdir="${build.classes.dir}"
+    	    classpathref="classpath"
+    	    force="never">
+    	    <include name="**/*.scala"/>
+    	 </scalac>
+    </target>
+	
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->		
+    <!-- Target: Deploy -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="deploy" depends="compile">
+		<copy file="${build.dir}/octane_commons.jar" tofile="${basedir}/../../lib/octane_commons.jar" overwrite="true" />
+    	<copy file="${build.dir}/octane_start.jar" tofile="${basedir}/../../octane_start.jar" overwrite="true" />
+    </target>	
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Build -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="jar" depends="compile">
+    	<jar destfile="${build.dir}/octane_commons.jar">
+    	    <fileset dir="${build.classes.dir}" includes="**/*.class" />
+    		
+    		<fileset dir="${build.classes.dir}" includes="*.properties" />
+    		<fileset dir="${build.classes.dir}" includes="conf/*.xml" />
+    		<fileset dir="${build.classes.dir}" includes="conf/*.properties" />
+    		<manifest>
+    			<attribute name="Built-By" value="Berlin Brown (Ant 1.7.0)" />			
+				<attribute name="Implementation-Vendor" value="Berlin Brown and Bnode.com" />
+				<attribute name="Implementation-Title" value="Octane Log Viewer" />
+				<attribute name="Implementation-Version" value="0.6.20090611" />
+			</manifest>
+		</jar>    		
+    </target>
+	
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Main Clean -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+</project>

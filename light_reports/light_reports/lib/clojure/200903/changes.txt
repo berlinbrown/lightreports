@@ -1,0 +1,286 @@
+fixed zip/remove when empty branch - patch from cgrand
+------------------------------------------------------------------------
+ancestors did not include the tag parents of a class' superclasses [issue 94], patch from cemerick
+------------------------------------------------------------------------
+generate bridge methods for covariant returns in proxy [issue 93], patch from cgrand
+------------------------------------------------------------------------
+(empty a-lazy-seq) -> ()
+------------------------------------------------------------------------
+made (empty aseq) -> (), (empty non-IPersistentCollection) -> nil
+------------------------------------------------------------------------
+limit proxy to 18 args
+------------------------------------------------------------------------
+fixed bug in proxy patch
+------------------------------------------------------------------------
+fixed proxy: inheriting a method from more than one iface [issue 93], patch from cgrand
+------------------------------------------------------------------------
+fixed seque
+------------------------------------------------------------------------
+interim checkin, incorporating new stream model
+------------------------------------------------------------------------
+sped up for, w/fixed formatting
+------------------------------------------------------------------------
+sped up for
+------------------------------------------------------------------------
+restore list constants as PersistentLists
+------------------------------------------------------------------------
+bytecode-based constants, [issue 78], patch from rwvtveer
+------------------------------------------------------------------------
+fix cast in read-line [issue 82], patch from Chouser/Trolard
+------------------------------------------------------------------------
+added :let option to for and doseq, order-sensitivity for options, [issue 88], patch from Chouser
+------------------------------------------------------------------------
+use openConnection().getLastModified() only for non-jars
+------------------------------------------------------------------------
+fixed header comment
+------------------------------------------------------------------------
+made letfn emit fn, not fn*
+------------------------------------------------------------------------
+made futures use CachedThreadPool
+------------------------------------------------------------------------
+added letfn, supports mutually recursive local fns
+------------------------------------------------------------------------
+avoid chaining in subvec of subvec
+------------------------------------------------------------------------
+swtiched to url.openConnection().getLastModified
+------------------------------------------------------------------------
+updated add-watch doc
+------------------------------------------------------------------------
+fix print-method for objects with :type meta but no print-method, patch from Konrad Hinsen
+------------------------------------------------------------------------
+gave Keywords non-identity hashCodes
+------------------------------------------------------------------------
+made watches synchronous, send old+new state, added add-watch, remove-watch, redefined add-watcher in terms of add-watch
+------------------------------------------------------------------------
+added type
+------------------------------------------------------------------------
+made line-seq fully lazy
+------------------------------------------------------------------------
+really fix nil pun in genclass
+------------------------------------------------------------------------
+fix nil pun in genclass
+------------------------------------------------------------------------
+unwrap InvocationTargetException's around Errors in reflective calls [issue 44]
+------------------------------------------------------------------------
+mod fix [issue 23], patch from timothypratley
+------------------------------------------------------------------------
+removed dorun calls to first
+------------------------------------------------------------------------
+lazy-seq perf tweaks
+------------------------------------------------------------------------
+improved Maven integration [issue 70], patch from hlship
+------------------------------------------------------------------------
+return unmodifiableList from ASeq.reify()
+------------------------------------------------------------------------
+fixed lazy-seq constants
+------------------------------------------------------------------------
+added clojure.core/*source-path*
+------------------------------------------------------------------------
+got rid of LazyCons
+------------------------------------------------------------------------
+fixed reverse and sort to return () on empty coll
+------------------------------------------------------------------------
+fixed bean, patch from Chouser
+------------------------------------------------------------------------
+fixed (= (lazy-seq nil) nil)
+------------------------------------------------------------------------
+added sequence
+------------------------------------------------------------------------
+fixed (cycle [])
+------------------------------------------------------------------------
+fixed nil punning in genclass, patch from Chouser
+------------------------------------------------------------------------
+fixed LazySeq and EmptyList equals/equiv
+------------------------------------------------------------------------
+merged lazy branch -r1236:1286
+------------------------------------------------------------------------
+added intCast from char/byte/short
+------------------------------------------------------------------------
+fixed distinct nil handling
+------------------------------------------------------------------------
+added multi-arg clojure.set/union/difference/intersection, patch from jawolfe
+------------------------------------------------------------------------
+added class name to No matching ctor message
+------------------------------------------------------------------------
+Revert: improved Maven integration, patch from hlship [issue 70], broke destination directories
+------------------------------------------------------------------------
+fixed ensure to use deref
+------------------------------------------------------------------------
+improved Maven integration, patch from hlship [issue 70]
+------------------------------------------------------------------------
+repl read refactoring, patch from scgilardi
+------------------------------------------------------------------------
+added Counted interface and counted? predicate
+implement stack/heap safe count in RT
+stack-safe count in ASeq/Cons, patch from Chouser
+------------------------------------------------------------------------
+catch method redef in proxy, patch from jbondeson
+------------------------------------------------------------------------
+IDeref print method honors *print-level*, patch from Chouser
+------------------------------------------------------------------------
+added inlining on remaining coercions
+------------------------------------------------------------------------
+added exact-match-wins in getMatchingParams
+------------------------------------------------------------------------
+~@x outside of syntax-quote yields: (unquote-splicing x), patch from mb
+------------------------------------------------------------------------
+added per-defmulti hierarchies, patch from mb
+------------------------------------------------------------------------
+fixed get overload in future-call
+------------------------------------------------------------------------
+add a warn-on-reflection option to  clojure.lang.Compile, patch from cemerick
+------------------------------------------------------------------------
+zip/remove does not return the correct loc, patch from cgrand
+fixed refer-clojure doc
+------------------------------------------------------------------------
+clojure.main should not exit if there was an exception in an --init file
+and the user requested a repl, patch from arohner
+------------------------------------------------------------------------
+fixed Ratio->bigdec, patch from jbondeson
+------------------------------------------------------------------------
+fixed Ratio to floating point conversion, patch from jbondeson
+------------------------------------------------------------------------
+fixed `()
+------------------------------------------------------------------------
+improved ref printing, patch from Chouser
+------------------------------------------------------------------------
+added #_ ignore form reader macro
+added IDeref above IRef, made delays and futures implement IDeref
+renamed/moved IRef.get() -> IDeref.deref()
+deref/@ maps to IDeref/deref
+added future-calls and future
+implement pmap on future
+implement pcalls on pmap
+------------------------------------------------------------------------
+added sync to writeClassFile
+------------------------------------------------------------------------
+fixed pmap so parallel in first n steps
+------------------------------------------------------------------------
+added pcalls, pvalues
+------------------------------------------------------------------------
+fixed definline, patch from Chouser
+------------------------------------------------------------------------
+made eval use ephemeral classloader in all cases
+------------------------------------------------------------------------
+make tree-seq accept non-branch root, patch from cgrand
+------------------------------------------------------------------------
+defmacro now returns var, patch from cgrand
+------------------------------------------------------------------------
+removes many reflection warnings from clojure.core files, patch from cgrand
+------------------------------------------------------------------------
+added mod, patch from Mark Engelberg
+------------------------------------------------------------------------
+made :default a keyword arg to defmulti, added support for docstring and metadata map, patch from mb
+------------------------------------------------------------------------
+Added doc strings for many *vars*,  patch from Jarkko
+------------------------------------------------------------------------
+Added doc string to ns macro, patch from mb
+------------------------------------------------------------------------
+added vary-meta
+------------------------------------------------------------------------
+wrap bean accessors in prepRet
+------------------------------------------------------------------------
+added methods/prefers for multimethod reflection
+------------------------------------------------------------------------
+added overloads for Atom.swap
+fix RT.nth for Lists to use count only for RandomAccess
+------------------------------------------------------------------------
+don't clear local closed over in catch/finally
+------------------------------------------------------------------------
+lift loops from expression contexts
+------------------------------------------------------------------------
+hashCode/equals/= cleanup, maximize alignment with j.u.Collections
+seqs/lists now implement List
+------------------------------------------------------------------------
+improve doc for contains? and some, patch from Chouser
+------------------------------------------------------------------------
+fix reader metadata fails for empty collection literals
+------------------------------------------------------------------------
+fix (- Integer/MAX_VALUE Integer/MIN_VALUE), patch from Achim Passen
+------------------------------------------------------------------------
+several macros claim to want only 2 binding forms, allow more, patch from  Jarkko Oranen
+------------------------------------------------------------------------
+Resolve classes from symbols before passing to overload-name, patch from Meikel Brandmeyer
+------------------------------------------------------------------------
+remove all #=()s from non-dup prints, patch from Chouser
+------------------------------------------------------------------------
+fixed (= () [])
+------------------------------------------------------------------------
+Report more incorrect usages of binding vectors, patch from Chouser
+------------------------------------------------------------------------
+fix range with too large negative index, patch from Olov Lassus
+made Range implement count()
+------------------------------------------------------------------------
+fixed Integer/LongOps.Negate overflow when MIN_VALUE
+------------------------------------------------------------------------
+Make syntax-quote Classname. and .method aware, patch from Meikel Brandmeyer
+------------------------------------------------------------------------
+move to RT.classForName in import
+don't gen stubs for package-private methods in gen-class and proxy (causes security violation in applets)
+Made root classloader create-on-demand, so no DynamicClassLoader unless dynamic code (eval/load, non-AOT proxy)
+AOT compiled applets should work
+------------------------------------------------------------------------
+check for file protocol in lastModified before trying File
+------------------------------------------------------------------------
+removed declare of atom and swap!
+------------------------------------------------------------------------
+handle all Throwables during agent actions
+------------------------------------------------------------------------
+fixed comments, patch from Chouser
+------------------------------------------------------------------------
+use same hashCode in seqs and lists as in vectors
+------------------------------------------------------------------------
+fixed typo in add-watcher docs, explained var watchers
+------------------------------------------------------------------------
+Added watcher support for agents/atoms/refs/vars
+Watchers must be agents
+(add-watcher reference :send/:send-off an-agent an-action)
+------------------------------------------------------------------------
+Added uniform metadata handling for atoms/refs/agents/vars/namespaces
+Note - breaking change for agent/ref when supplying validator - validator must be passed using :validator option
+Added :validator and :meta options to agent/ref/atom
+Added alter-meta! and reset-meta! for reference types
+renamed set-validator to set-validator!
+Validators now can simply return false, or throw
+Refactoring, added IMeta, IReference
+Switched to longs for Ref ids
+------------------------------------------------------------------------
+made method matching handle differ only in return type, resolving to more-derived return type when bridge methods are involved
+tweaked RT.load for Android
+tweaked DynamicClassLoader parenting for Android
+Android now works if you comment out bean in core_proxy.clj (java.beans is not supported on Android)
+------------------------------------------------------------------------
+made Repl and Script public again
+------------------------------------------------------------------------
+Make sure all integer ops return smallest representation, patch from Christophe Grand
+fixed inc/dec long for max/min values
+------------------------------------------------------------------------
+unified clojure.main, patch from Stephen C. Gilardi
+------------------------------------------------------------------------
+added speculative load when no .clj or .class resource found, for Dalvik VM
+------------------------------------------------------------------------
+added back checkCasts before invokeInterface calls
+------------------------------------------------------------------------
+uniqueify foo# locals, don't clear primitive locals on tail calls
+------------------------------------------------------------------------
+added release-pending-sends
+------------------------------------------------------------------------
+~x not in syntax-quote yields (clojure.core/unquote x)
+clojure.core/unquote has no root binding
+------------------------------------------------------------------------
+more uniform map literal implementation
+------------------------------------------------------------------------
+with-open accepts multiple bindings, patch from Meikel Brandmeyer
+------------------------------------------------------------------------
+change to AtomicLong for lastPoint
+------------------------------------------------------------------------
+added condp, with input from Stuart Sierra and Meikel Brandmeyer
+------------------------------------------------------------------------
+support single symbol imports, e.g. (import 'java.util.Date), patch from Meikel Brandmeyer
+------------------------------------------------------------------------
+fixed with-bindings to not hardwire compile-time compile path
+------------------------------------------------------------------------
+make sure find returns entry with original key
+------------------------------------------------------------------------
+updated readme with run and build lines
+------------------------------------------------------------------------

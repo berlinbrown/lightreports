@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+/* Example PDF Style */
+
+body {
+	margin:  10px;
+	padding: 10px;
+	background-color: #F1F1F1;	
+	font-size:   11px;
+	font-family: Arial, Helvetica, sans-serif;
+    color: #777;
+}
+
+@page {
+     size: 11in 8.5in;
+     margin-top:    0.3in;
+     margin-left:   0.3in;
+     margin-right:  0.3in;
+     margin-bottom: 0.3in;
+
+     @bottom-right {
+	      content: "My Footer / Page " counter(page) " of " counter(pages) "  ";
+     }
+}
+
+
+ 

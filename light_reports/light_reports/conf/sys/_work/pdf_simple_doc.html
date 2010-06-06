@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>The Title</title>
+  <link href="pdf/styles/light_pdf_styles.css" rel="stylesheet" type="text/css" />
+  
+  <style type="text/css">                
+        @page { 
+            @top-center { 
+                content: element(header);
+            }       
+            @bottom-right { 
+                content: counter(page);
+            }
+        }             
+    
+        h1 {
+            font-family: "Century Gothic", Arial;
+            text-align:  right;
+            font-weight: normal;
+        }
+
+        h2 {
+            font-size: 100%;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        table {
+            -fs-table-paginate: paginate;
+            border: 1px solid gray;
+            width: 100%;
+            border-collapse: separate;            
+        }
+
+        caption {
+            border: 1px solid gray;
+        }
+
+        td, th {
+            border: 0px solid black;
+            text-align: right;
+        }
+
+        td.desc, th {
+            text-align: left;
+        }
+
+        tr.odd td {
+            background-color: #ccccff;
+        }
+
+        tr.even td {
+            background-color: transparent;
+        }
+      
+        tr.totals td.total {
+            background-color: #ccccff;
+        }
+
+        table#overview td {
+            border: 1px solid gray;
+            padding: 5px;
+        }
+        
+        div#header {
+            display: block;
+            position: running(header);
+        }
+  
+    </style>
+</head>
+<body>
+    <div>
+      Example <span style="color: 999">PDF</span> document.
+    </div>
+    
+    <div id="header">
+        Some Header - __LIGHT_DATE1__ (__LIGHT_DATE2__)
+    </div>
+        
+    <div>        
+		        
+		<table>
+		    <caption>3rd Qtr Financial Results - __LIGHT_DATE3__ (__LIGHT_DATE4__)</caption>
+		    <thead>
+		        <tr>
+		            <th style="text-align: left;">Department</th>
+		            <th style="text-align: right;">Gross Sales</th>
+		            <th style="text-align: right;">Expenses</th>
+		            <th style="text-align: right;">Net Profit</th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		    <tr class="totals">
+		        <td class="total" colspan="4">1,000,000.00</td>
+		    </tr>
+		    </tfoot>		    
+		    <tbody>
+		    <tr class="odd">
+		        <td class="desc" style="vertical-align: top;" rowspan="6">Pets</td>
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    <tr class="even">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    <tr class="odd">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    <tr class="even">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		
+		    <tr class="odd">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    <tr class="even">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		
+		    <tr class="odd">
+		        <td class="desc" style="vertical-align: top;" rowspan="7">Gardening</td>
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    <tr class="even">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		
+		    <tr class="odd">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    <tr class="even">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		
+		    <tr class="odd">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    <tr class="even">
+		        <td>12345.00</td>
+		        <td>1020.00</td>
+		        <td>9000.00</td>
+		    </tr>
+		    
+		    <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+               <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+               <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+               <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>
+            
+            <tr class="even">
+                <td>12345.00</td>
+                <td>1020.00</td>
+                <td>9000.00</td>
+            </tr>	
+		    </tbody>
+		</table>
+                   
+    </div>
+    
+    <img src="pdf/styles/alice2.gif" /> 
+    
+    <!-- Styles are loaded from [Light_home]/pdf/styles/light_pdf_styles.css -->
+    <!-- Also place images in [Light_home]/pdf/styles/images/*.png, etc -->
+</body>    
+</html>
+
+

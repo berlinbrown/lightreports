@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<!-- Copyright (c) 2009 -->
+<!-- Octane/Light Logs build script for building the java source -->
+<!-- The PDF library java source are excluded -->
+<!-- Also see build_pdf_gui.xml -->
+<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+<project name="Build File" default="jar" basedir=".">
+    <property file="build.properties" /> 
+    <property name="build.dir"            value="${basedir}/build"/>
+    <property name="build.classes.dir"    value="${basedir}/build/classes"/>
+    <property name="src.dir"              value="${basedir}/src"/>
+    <property name="lib.dir"              value="${basedir}/../../lib"/>
+	
+	<property name="lib.pdf.dir"          value="${basedir}/../../lib/pdf" />
+
+<target name="help" description="Initialization">
+	        <tstamp/>
+			<echo>
+ Additional Targets and Usage:
+ -----------------
+ compile - to compile the source, use this target.  
+           To build the  complete release package, 
+           you must compile this manually.
+
+</echo>
+	</target>
+	
+    <path id="classpath">
+    	<pathelement location="${lib.dir}/" /> 
+    	<pathelement location="${lib.dir}/clojure.jar" />
+    	<pathelement location="${lib.dir}/swt/win32/swt.jar" />
+    	<pathelement location="${lib.dir}/log4j-1.2.15.jar" />
+    	<pathelement location="${lib.dir}/jline-0.9.94.jar" />
+    	<pathelement location="${lib.dir}/spring/spring-custom.jar" />    	
+    </path>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Prepare -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="prepare" depends="help">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.classes.dir}" />
+    	<mkdir dir="${build.classes.dir}/conf" />
+    </target>
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Compile -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="compile" depends="prepare">
+        <javac deprecation="true"
+        		verbose="false"
+        		debug="true"
+                target="1.5"
+                srcdir="${src.dir}"
+                destdir="${build.classes.dir}">
+        	<include name="com/light/**/*.java" />
+        	<include name="com/octane/**/*.java" />
+        	<exclude name="clojure/**/*.java" />
+            <classpath refid="classpath"/>            
+        </javac>
+    	<!-- ********************************************** -->
+    	<!-- Copy resource files to build dir, also ensure that they are jarred -->
+    	<!-- ********************************************** -->
+    	<copy file="${src.dir}/log4j.properties" todir="${build.classes.dir}" overwrite="true" />
+    	<copy file="${src.dir}/conf/__logs_default_all.xml" todir="${build.classes.dir}/conf" overwrite="true" />
+    	<copy file="${src.dir}/conf/octane_win.properties" todir="${build.classes.dir}/conf" overwrite="true" />
+    </target>
+	    	
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Run -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="run.driver" depends="compile">
+    	<java classname="com.octane.network.proxy.driver.ProxyServerDriver">
+			<classpath refid="classpath" />
+			<classpath>
+				<pathelement location="${basedir}" />
+				<pathelement location="${build.classes.dir}" />
+			</classpath>    	            
+			<arg value="${basedir}/WEB-INF/classes/version.properties"/>            
+		</java>
+    </target>
+	
+    <target name="run.decompress" depends="compile">
+    	<java classname="com.octane.util.zip.UncompressInputStream">
+			<classpath refid="classpath" />
+			<classpath>
+				<pathelement location="${basedir}" />
+				<pathelement location="${build.classes.dir}" />
+			</classpath>    	            
+			<arg value="C:/temp/native_stderr.log.090216060203.Z" />
+		</java>
+    </target>
+	
+	<target name="run.start" depends="start">		
+		<java classname="com.octane.start.OctaneLauncherMain" fork="true">
+			<classpath>
+				<pathelement location="${build.classes.dir}" />
+			</classpath>
+			<!-- <jvmarg value="-verbose:class" /> -->
+			<jvmarg value="-Xms70m" />
+			<jvmarg value="-Xmx150m" />
+		</java>
+	</target>		
+
+	<target name="run.server" depends="start">		
+		<java classname="com.octane.network.clj.OctaneServerScript" fork="true">
+			<classpath>
+				<pathelement location="${build.classes.dir}" />
+			</classpath>
+			<!-- <jvmarg value="-verbose:class" /> -->
+			<jvmarg value="-Xms70m" />
+			<jvmarg value="-Xmx150m" />
+		</java>
+	</target>
+	
+	<target name="run.pdf" depends="start">		
+			<java classname="com.toolkit.util.driver.PDFCreateMain" fork="true">
+				<arg value="${basedir}/../../docs/LightLogViewer_Manual.xhtml" />
+				<arg value="${basedir}/../../docs/LightLogViewer_Manual.pdf" />
+				<classpath>
+					<pathelement location="${build.classes.dir}" />
+					
+			    	<pathelement location="${lib.pdf.dir}/minium.jar"        />
+			    	<pathelement location="${lib.pdf.dir}/tagsoup-1.2.jar"   />
+			    	<pathelement location="${lib.pdf.dir}/core-renderer.jar" />
+					<!-- With jdk 1.6, may need to remove xerces -->
+			    	<!-- <pathelement location="${lib.pdf.dir}/xercesImpl.jar"    /> -->
+			    	<pathelement location="${lib.dir}/swt/win32/swt.jar"     />
+				</classpath>				
+				<jvmarg value="-Xms70m" />
+				<jvmarg value="-Xmx150m" />
+			</java>
+	</target>
+	<target name="run.pdf.mac" depends="start">		
+				<java classname="com.toolkit.util.driver.PDFCreateMain" fork="true">
+					<arg value="${basedir}/../../docs/LightLogViewer_Manual_mac.xhtml" />
+					<arg value="${basedir}/../../docs/LightLogViewer_Manual.pdf" />
+					<classpath>
+						<pathelement location="${build.classes.dir}" />
+						
+				    	<pathelement location="${lib.pdf.dir}/minium.jar"        />
+				    	<pathelement location="${lib.pdf.dir}/tagsoup-1.2.jar"   />
+				    	<pathelement location="${lib.pdf.dir}/core-renderer.jar" />						
+				    	<!-- <pathelement location="${lib.pdf.dir}/xercesImpl.jar"    /> -->
+				    	<pathelement location="${lib.dir}/swt/win32/swt.jar"     />
+					</classpath>				
+					<jvmarg value="-Xms70m" />
+					<jvmarg value="-Xmx150m" />
+				</java>
+	</target>
+	
+	
+	<target name="run.start.jar" depends="start">
+	    	<java classname="com.octane.start.OctaneLauncherMain">
+				<classpath>
+					<pathelement location="${build.dir}/octane_start.jar" />
+				</classpath>    	            					    		
+			</java>
+	</target>
+	
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->		
+    <!-- Target: Deploy -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="deploy" depends="start">
+		<copy file="${build.dir}/octane_commons.jar" tofile="${basedir}/../../lib/octane_commons.jar" overwrite="true" />
+    	<copy file="${build.dir}/octane_start.jar" tofile="${basedir}/../../octane_start.jar" overwrite="true" />
+    </target>	
+
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <!-- Target: Build -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="jar" depends="compile">
+    	<jar destfile="${build.dir}/octane_commons.jar">
+    	    <fileset dir="${build.classes.dir}" includes="**/*.class" />
+    		
+    		<fileset dir="${build.classes.dir}" includes="*.properties" />
+    		<fileset dir="${build.classes.dir}" includes="conf/*.xml" />
+    		<fileset dir="${build.classes.dir}" includes="conf/*.properties" />
+    		<manifest>
+    			<attribute name="Built-By" value="Berlin Brown (Ant 1.7.0)" />			
+				<attribute name="Implementation-Vendor" value="Berlin Brown and Bnode.com" />
+				<attribute name="Implementation-Title" value="Octane Log Viewer" />
+				<attribute name="Implementation-Version" value="0.6.20090611" />
+			</manifest>
+		</jar>    		
+    </target>
+
+    <target name="start" depends="jar">
+    	<jar destfile="${build.dir}/octane_start.jar">
+    	    <fileset dir="${build.classes.dir}">
+    	    	<include name="**/*.class" />
+			</fileset>    	    	
+    		
+    		<fileset dir="${build.classes.dir}" includes="*.properties" />
+    		<fileset dir="${build.classes.dir}" includes="conf/*.xml" />
+    		<fileset dir="${build.classes.dir}" includes="conf/*.properties" />
+    	    <manifest>
+    	      <attribute name="Built-By" value="Berlin Brown (Ant 1.7.0)" />
+   	    	  <attribute name="Main-Class" value="com.octane.start.OctaneLauncherMain" />
+    	      <attribute name="Implementation-Vendor" value="Berlin Brown and Bnode.com" />
+    	      <attribute name="Implementation-Title" value="Octane Log Viewer" />
+    	      <attribute name="Implementation-Version" value="0.6.20090611" />
+    	    </manifest>
+		</jar>    		
+    </target>
+	
+	<!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+	<!-- Main Clean -->
+    <!-- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+</project>

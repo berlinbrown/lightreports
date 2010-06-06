@@ -1,0 +1,11 @@
+Path: .
+URL: http://clojure.googlecode.com/svn/trunk
+Repository Root: http://clojure.googlecode.com/svn
+Repository UUID: a41a16f3-9855-0410-b325-31a011a03e7c
+Revision: 1335
+Node Kind: directory
+Schedule: normal
+Last Changed Author: richhickey
+Last Changed Rev: 1335
+Last Changed Date: 2009-03-19 09:51:32 -0400 (Thu, 19 Mar 2009)
+
