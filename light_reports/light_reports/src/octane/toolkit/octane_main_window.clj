@@ -1,5 +1,5 @@
 ;;;
-;;; Copyright (c) 2006-2007 Berlin Brown and botnode.com  All Rights Reserved
+;;; Copyright (c) 2006-2007 Berlin Brown and berlin2research.com  All Rights Reserved
 ;;;
 ;;; http://www.opensource.org/licenses/bsd-license.php
 
@@ -36,6 +36,7 @@
 ;;; ====================================     
 ;;; Date: 1/5/2009
 ;;;       7/15/2009 - Added Clojure 1.0, other performance fixes and cleanups.
+;;;       Misc updates 1/1/2013
 ;;;      
 ;;; Main Description: Light Log Viewer is a tool for making it easier to search log files.  
 ;;; Light Log Viewer adds some text highlighting, quick key navigation to text files, simple graphs 
