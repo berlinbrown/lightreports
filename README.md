@@ -20,3 +20,5 @@ The htmltopdf parser, xhtmlrenderer has support for most of the features of CSS 
     * Search tools using Linux or Win32 applications (unxutils).
     * Create PDF Documents with PDF create tools.
     * Built on Java 1.5 and the Clojure programming language. 
+
+This tool also is useful for editing and viewing log4j log files.
