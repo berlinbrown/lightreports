@@ -22,3 +22,12 @@ The htmltopdf parser, xhtmlrenderer has support for most of the features of CSS 
     * Built on Java 1.5 and the Clojure programming language. 
 
 This tool also is useful for editing and viewing log4j log files.
+
+Usage:
+
+Place the octane directory such that HOME is placed at :
+  
+  C:\usr\local\projects\light_logs
+  
+  And click on the light_logs.bat batch script.
+ 
