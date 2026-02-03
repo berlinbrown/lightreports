@@ -1,391 +1,440 @@
 package com.octane.util.junit.framework;
 
 /**
- * A set of assert methods.  Messages are only displayed when an assert fails.
+ * A set of assert methods. Messages are only displayed when an assert fails.
+ *
  * @author Berlin
  * @version $Revision: 1.0 $
  */
-
 public class Assert {
-	/**
-	 * Protect constructor since it is a static only class
-	 */
-	protected Assert() {
-	}
+  /** Protect constructor since it is a static only class */
+  protected Assert() {}
 
-	/**
-	 * Asserts that a condition is true. If it isn't it throws
-	 * an AssertionFailedError with the given message.
-	 * @param message String
-	 * @param condition boolean
-	 */
-	static public void assertTrue(String message, boolean condition) {
-		if (!condition)
-			fail(message);
-	}
-	/**
-	 * Asserts that a condition is true. If it isn't it throws
-	 * an AssertionFailedError.
-	 * @param condition boolean
-	 */
-	static public void assertTrue(boolean condition) {
-		assertTrue(null, condition);
-	}
-	/**
-	 * Asserts that a condition is false. If it isn't it throws
-	 * an AssertionFailedError with the given message.
-	 * @param message String
-	 * @param condition boolean
-	 */
-	static public void assertFalse(String message, boolean condition) {
-		assertTrue(message, !condition);
-	}
-	/**
-	 * Asserts that a condition is false. If it isn't it throws
-	 * an AssertionFailedError.
-	 * @param condition boolean
-	 */
-	static public void assertFalse(boolean condition) {
-		assertFalse(null, condition);
-	}
-	/**
-	 * Fails a test with the given message.
-	 * @param message String
-	 */
-	static public void fail(String message) {
-		throw new AssertionFailedError(message);
-	}
-	/**
-	 * Fails a test with no message.
-	 */
-	static public void fail() {
-		fail(null);
-	}
-	/**
-	 * Asserts that two objects are equal. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void assertEquals(String message, Object expected, Object actual) {
-		if (expected == null && actual == null)
-			return;
-		if (expected != null && expected.equals(actual))
-			return;
-		failNotEquals(message, expected, actual);
-	}
-	/**
-	 * Asserts that two objects are equal. If they are not
-	 * an AssertionFailedError is thrown.
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void assertEquals(Object expected, Object actual) {
-	    assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that two Strings are equal. 
-	 * @param message String
-	 * @param expected String
-	 * @param actual String
-	 */
-	static public void assertEquals(String message, String expected, String actual) {
-		if (expected == null && actual == null)
-			return;
-		if (expected != null && expected.equals(actual))
-			return;
-		throw new ComparisonFailure(message, expected, actual);
-	}
-	/**
-	 * Asserts that two Strings are equal. 
-	 * @param expected String
-	 * @param actual String
-	 */
-	static public void assertEquals(String expected, String actual) {
-	    assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that two doubles are equal concerning a delta.  If they are not
-	 * an AssertionFailedError is thrown with the given message.  If the expected
-	 * value is infinity then the delta value is ignored.
-	 * @param message String
-	 * @param expected double
-	 * @param actual double
-	 * @param delta double
-	 */
-	static public void assertEquals(String message, double expected, double actual, double delta) {
-		if (Double.compare(expected, actual) == 0)
-			return;
-		if (!(Math.abs(expected-actual) <= delta))
-			failNotEquals(message, new Double(expected), new Double(actual));
-	}
-	/**
-	 * Asserts that two doubles are equal concerning a delta. If the expected
-	 * value is infinity then the delta value is ignored.
-	 * @param expected double
-	 * @param actual double
-	 * @param delta double
-	 */
-	static public void assertEquals(double expected, double actual, double delta) {
-	    assertEquals(null, expected, actual, delta);
-	}
-	/**
-	 * Asserts that two floats are equal concerning a delta. If they are not
-	 * an AssertionFailedError is thrown with the given message.  If the expected
-	 * value is infinity then the delta value is ignored.
-	 * @param message String
-	 * @param expected float
-	 * @param actual float
-	 * @param delta float
-	 */
-	static public void assertEquals(String message, float expected, float actual, float delta) {
- 		// handle infinity specially since subtracting to infinite values gives NaN and the
-		// the following test fails
-		if (Float.isInfinite(expected)) {
-			if (!(expected == actual))
-				failNotEquals(message, new Float(expected), new Float(actual));
-		} else if (!(Math.abs(expected-actual) <= delta))
-      		failNotEquals(message, new Float(expected), new Float(actual));
-	}
-	/**
-	 * Asserts that two floats are equal concerning a delta. If the expected
-	 * value is infinity then the delta value is ignored.
-	 * @param expected float
-	 * @param actual float
-	 * @param delta float
-	 */
-	static public void assertEquals(float expected, float actual, float delta) {
-		assertEquals(null, expected, actual, delta);
-	}
-	/**
-	 * Asserts that two longs are equal. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected long
-	 * @param actual long
-	 */
-	static public void assertEquals(String message, long expected, long actual) {
-	    assertEquals(message, new Long(expected), new Long(actual));
-	}
-	/**
-	 * Asserts that two longs are equal.
-	 * @param expected long
-	 * @param actual long
-	 */
-	static public void assertEquals(long expected, long actual) {
-	    assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that two booleans are equal. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected boolean
-	 * @param actual boolean
-	 */
-	static public void assertEquals(String message, boolean expected, boolean actual) {
-    		assertEquals(message, Boolean.valueOf(expected), Boolean.valueOf(actual));
-  	}
-	/**
-	 * Asserts that two booleans are equal.
- 	 * @param expected boolean
-	 * @param actual boolean
-	 */
-	static public void assertEquals(boolean expected, boolean actual) {
-		assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that two bytes are equal. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected byte
-	 * @param actual byte
-	 */
-  	static public void assertEquals(String message, byte expected, byte actual) {
-		assertEquals(message, new Byte(expected), new Byte(actual));
-	}
-	/**
-   	 * Asserts that two bytes are equal.
-	 * @param expected byte
-	 * @param actual byte
-	 */
-	static public void assertEquals(byte expected, byte actual) {
-		assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that two chars are equal. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected char
-	 * @param actual char
-	 */
-  	static public void assertEquals(String message, char expected, char actual) {
-    		assertEquals(message, new Character(expected), new Character(actual));
-  	}
-	/**
-	 * Asserts that two chars are equal.
-	 * @param expected char
-	 * @param actual char
-	 */
-  	static public void assertEquals(char expected, char actual) {
-		assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that two shorts are equal. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected short
-	 * @param actual short
-	 */
-	static public void assertEquals(String message, short expected, short actual) {
-    		assertEquals(message, new Short(expected), new Short(actual));
-	}
-  	/**
-	 * Asserts that two shorts are equal.
-	 * @param expected short
-  	 * @param actual short
-  	 */
-	static public void assertEquals(short expected, short actual) {
-		assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that two ints are equal. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected int
-	 * @param actual int
-	 */
-  	static public void assertEquals(String message, int expected, int actual) {
-		assertEquals(message, new Integer(expected), new Integer(actual));
-  	}
-  	/**
-   	 * Asserts that two ints are equal.
-	 * @param expected int
-  	 * @param actual int
-  	 */
-  	static public void assertEquals(int expected, int actual) {
-  		assertEquals(null, expected, actual);
-	}
-	/**
-	 * Asserts that an object isn't null.
-	 * @param object Object
-	 */
-	static public void assertNotNull(Object object) {
-		assertNotNull(null, object);
-	}
-	/**
-	 * Asserts that an object isn't null. If it is
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param object Object
-	 */
-	static public void assertNotNull(String message, Object object) {
-		assertTrue(message, object != null);
-	}
-	/**
-	 * Asserts that an object is null.
-	 * @param object Object
-	 */
-	static public void assertNull(Object object) {
-		assertNull(null, object);
-	}
-	/**
-	 * Asserts that an object is null.  If it is not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param object Object
-	 */
-	static public void assertNull(String message, Object object) {
-		assertTrue(message, object == null);
-	}
-	/**
-	 * Asserts that two objects refer to the same object. If they are not
-	 * an AssertionFailedError is thrown with the given message.
-	 * @param message String
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void assertSame(String message, Object expected, Object actual) {
-		if (expected == actual)
-			return;
-		failNotSame(message, expected, actual);
-	}
-	/**
-	 * Asserts that two objects refer to the same object. If they are not
-	 * the same an AssertionFailedError is thrown.
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void assertSame(Object expected, Object actual) {
-	    assertSame(null, expected, actual);
-	}
-	/**
-	 * Asserts that two objects do not refer to the same object. If they do
-	 * refer to the same object an AssertionFailedError is thrown with the
-	 * given message.
-	 * @param message String
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void assertNotSame(String message, Object expected, Object actual) {
-		if (expected == actual)
-			failSame(message);
-	}
-	/**
-	 * Asserts that two objects do not refer to the same object. If they do
-	 * refer to the same object an AssertionFailedError is thrown.
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void assertNotSame(Object expected, Object actual) {
-		assertNotSame(null, expected, actual);
-	}
+  /**
+   * Asserts that a condition is true. If it isn't it throws an AssertionFailedError with the given
+   * message.
+   *
+   * @param message String
+   * @param condition boolean
+   */
+  public static void assertTrue(String message, boolean condition) {
+    if (!condition) fail(message);
+  }
 
-	/**
-	 * Implementation Routine failSame.
-	 * @param message String
-	 */
-	static public void failSame(String message) {
-		String formatted= "";
- 		if (message != null)
- 			formatted= message+" ";
- 		fail(formatted+"expected not same");
-	}
+  /**
+   * Asserts that a condition is true. If it isn't it throws an AssertionFailedError.
+   *
+   * @param condition boolean
+   */
+  public static void assertTrue(boolean condition) {
+    assertTrue(null, condition);
+  }
 
-	/**
-	 * Implementation Routine failNotSame.
-	 * @param message String
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void failNotSame(String message, Object expected, Object actual) {
-		String formatted= "";
-		if (message != null)
-			formatted= message+" ";
-		fail(formatted+"expected same:<"+expected+"> was not:<"+actual+">");
-	}
+  /**
+   * Asserts that a condition is false. If it isn't it throws an AssertionFailedError with the given
+   * message.
+   *
+   * @param message String
+   * @param condition boolean
+   */
+  public static void assertFalse(String message, boolean condition) {
+    assertTrue(message, !condition);
+  }
 
-	/**
-	 * Implementation Routine failNotEquals.
-	 * @param message String
-	 * @param expected Object
-	 * @param actual Object
-	 */
-	static public void failNotEquals(String message, Object expected, Object actual) {
-		fail(format(message, expected, actual));
-	}
+  /**
+   * Asserts that a condition is false. If it isn't it throws an AssertionFailedError.
+   *
+   * @param condition boolean
+   */
+  public static void assertFalse(boolean condition) {
+    assertFalse(null, condition);
+  }
 
-	/**
-	 * Implementation Routine format.
-	 * @param message String
-	 * @param expected Object
-	 * @param actual Object
-	 * @return String
-	 */
-	static String format(String message, Object expected, Object actual) {
-		String formatted= "";
-		if (message != null)
-			formatted= message+" ";
-		return formatted+"expected:<"+expected+"> but was:<"+actual+">";
-	}
+  /**
+   * Fails a test with the given message.
+   *
+   * @param message String
+   */
+  public static void fail(String message) {
+    throw new AssertionFailedError(message);
+  }
+
+  /** Fails a test with no message. */
+  public static void fail() {
+    fail(null);
+  }
+
+  /**
+   * Asserts that two objects are equal. If they are not an AssertionFailedError is thrown with the
+   * given message.
+   *
+   * @param message String
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void assertEquals(String message, Object expected, Object actual) {
+    if (expected == null && actual == null) return;
+    if (expected != null && expected.equals(actual)) return;
+    failNotEquals(message, expected, actual);
+  }
+
+  /**
+   * Asserts that two objects are equal. If they are not an AssertionFailedError is thrown.
+   *
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void assertEquals(Object expected, Object actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two Strings are equal.
+   *
+   * @param message String
+   * @param expected String
+   * @param actual String
+   */
+  public static void assertEquals(String message, String expected, String actual) {
+    if (expected == null && actual == null) return;
+    if (expected != null && expected.equals(actual)) return;
+    throw new ComparisonFailure(message, expected, actual);
+  }
+
+  /**
+   * Asserts that two Strings are equal.
+   *
+   * @param expected String
+   * @param actual String
+   */
+  public static void assertEquals(String expected, String actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two doubles are equal concerning a delta. If they are not an AssertionFailedError
+   * is thrown with the given message. If the expected value is infinity then the delta value is
+   * ignored.
+   *
+   * @param message String
+   * @param expected double
+   * @param actual double
+   * @param delta double
+   */
+  public static void assertEquals(String message, double expected, double actual, double delta) {
+    if (Double.compare(expected, actual) == 0) return;
+    if (!(Math.abs(expected - actual) <= delta))
+      failNotEquals(message, new Double(expected), new Double(actual));
+  }
+
+  /**
+   * Asserts that two doubles are equal concerning a delta. If the expected value is infinity then
+   * the delta value is ignored.
+   *
+   * @param expected double
+   * @param actual double
+   * @param delta double
+   */
+  public static void assertEquals(double expected, double actual, double delta) {
+    assertEquals(null, expected, actual, delta);
+  }
+
+  /**
+   * Asserts that two floats are equal concerning a delta. If they are not an AssertionFailedError
+   * is thrown with the given message. If the expected value is infinity then the delta value is
+   * ignored.
+   *
+   * @param message String
+   * @param expected float
+   * @param actual float
+   * @param delta float
+   */
+  public static void assertEquals(String message, float expected, float actual, float delta) {
+    // handle infinity specially since subtracting to infinite values gives NaN and the
+    // the following test fails
+    if (Float.isInfinite(expected)) {
+      if (!(expected == actual)) failNotEquals(message, new Float(expected), new Float(actual));
+    } else if (!(Math.abs(expected - actual) <= delta))
+      failNotEquals(message, new Float(expected), new Float(actual));
+  }
+
+  /**
+   * Asserts that two floats are equal concerning a delta. If the expected value is infinity then
+   * the delta value is ignored.
+   *
+   * @param expected float
+   * @param actual float
+   * @param delta float
+   */
+  public static void assertEquals(float expected, float actual, float delta) {
+    assertEquals(null, expected, actual, delta);
+  }
+
+  /**
+   * Asserts that two longs are equal. If they are not an AssertionFailedError is thrown with the
+   * given message.
+   *
+   * @param message String
+   * @param expected long
+   * @param actual long
+   */
+  public static void assertEquals(String message, long expected, long actual) {
+    assertEquals(message, new Long(expected), new Long(actual));
+  }
+
+  /**
+   * Asserts that two longs are equal.
+   *
+   * @param expected long
+   * @param actual long
+   */
+  public static void assertEquals(long expected, long actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two booleans are equal. If they are not an AssertionFailedError is thrown with the
+   * given message.
+   *
+   * @param message String
+   * @param expected boolean
+   * @param actual boolean
+   */
+  public static void assertEquals(String message, boolean expected, boolean actual) {
+    assertEquals(message, Boolean.valueOf(expected), Boolean.valueOf(actual));
+  }
+
+  /**
+   * Asserts that two booleans are equal.
+   *
+   * @param expected boolean
+   * @param actual boolean
+   */
+  public static void assertEquals(boolean expected, boolean actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two bytes are equal. If they are not an AssertionFailedError is thrown with the
+   * given message.
+   *
+   * @param message String
+   * @param expected byte
+   * @param actual byte
+   */
+  public static void assertEquals(String message, byte expected, byte actual) {
+    assertEquals(message, new Byte(expected), new Byte(actual));
+  }
+
+  /**
+   * Asserts that two bytes are equal.
+   *
+   * @param expected byte
+   * @param actual byte
+   */
+  public static void assertEquals(byte expected, byte actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two chars are equal. If they are not an AssertionFailedError is thrown with the
+   * given message.
+   *
+   * @param message String
+   * @param expected char
+   * @param actual char
+   */
+  public static void assertEquals(String message, char expected, char actual) {
+    assertEquals(message, new Character(expected), new Character(actual));
+  }
+
+  /**
+   * Asserts that two chars are equal.
+   *
+   * @param expected char
+   * @param actual char
+   */
+  public static void assertEquals(char expected, char actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two shorts are equal. If they are not an AssertionFailedError is thrown with the
+   * given message.
+   *
+   * @param message String
+   * @param expected short
+   * @param actual short
+   */
+  public static void assertEquals(String message, short expected, short actual) {
+    assertEquals(message, new Short(expected), new Short(actual));
+  }
+
+  /**
+   * Asserts that two shorts are equal.
+   *
+   * @param expected short
+   * @param actual short
+   */
+  public static void assertEquals(short expected, short actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two ints are equal. If they are not an AssertionFailedError is thrown with the
+   * given message.
+   *
+   * @param message String
+   * @param expected int
+   * @param actual int
+   */
+  public static void assertEquals(String message, int expected, int actual) {
+    assertEquals(message, new Integer(expected), new Integer(actual));
+  }
+
+  /**
+   * Asserts that two ints are equal.
+   *
+   * @param expected int
+   * @param actual int
+   */
+  public static void assertEquals(int expected, int actual) {
+    assertEquals(null, expected, actual);
+  }
+
+  /**
+   * Asserts that an object isn't null.
+   *
+   * @param object Object
+   */
+  public static void assertNotNull(Object object) {
+    assertNotNull(null, object);
+  }
+
+  /**
+   * Asserts that an object isn't null. If it is an AssertionFailedError is thrown with the given
+   * message.
+   *
+   * @param message String
+   * @param object Object
+   */
+  public static void assertNotNull(String message, Object object) {
+    assertTrue(message, object != null);
+  }
+
+  /**
+   * Asserts that an object is null.
+   *
+   * @param object Object
+   */
+  public static void assertNull(Object object) {
+    assertNull(null, object);
+  }
+
+  /**
+   * Asserts that an object is null. If it is not an AssertionFailedError is thrown with the given
+   * message.
+   *
+   * @param message String
+   * @param object Object
+   */
+  public static void assertNull(String message, Object object) {
+    assertTrue(message, object == null);
+  }
+
+  /**
+   * Asserts that two objects refer to the same object. If they are not an AssertionFailedError is
+   * thrown with the given message.
+   *
+   * @param message String
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void assertSame(String message, Object expected, Object actual) {
+    if (expected == actual) return;
+    failNotSame(message, expected, actual);
+  }
+
+  /**
+   * Asserts that two objects refer to the same object. If they are not the same an
+   * AssertionFailedError is thrown.
+   *
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void assertSame(Object expected, Object actual) {
+    assertSame(null, expected, actual);
+  }
+
+  /**
+   * Asserts that two objects do not refer to the same object. If they do refer to the same object
+   * an AssertionFailedError is thrown with the given message.
+   *
+   * @param message String
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void assertNotSame(String message, Object expected, Object actual) {
+    if (expected == actual) failSame(message);
+  }
+
+  /**
+   * Asserts that two objects do not refer to the same object. If they do refer to the same object
+   * an AssertionFailedError is thrown.
+   *
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void assertNotSame(Object expected, Object actual) {
+    assertNotSame(null, expected, actual);
+  }
+
+  /**
+   * Implementation Routine failSame.
+   *
+   * @param message String
+   */
+  public static void failSame(String message) {
+    String formatted = "";
+    if (message != null) formatted = message + " ";
+    fail(formatted + "expected not same");
+  }
+
+  /**
+   * Implementation Routine failNotSame.
+   *
+   * @param message String
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void failNotSame(String message, Object expected, Object actual) {
+    String formatted = "";
+    if (message != null) formatted = message + " ";
+    fail(formatted + "expected same:<" + expected + "> was not:<" + actual + ">");
+  }
+
+  /**
+   * Implementation Routine failNotEquals.
+   *
+   * @param message String
+   * @param expected Object
+   * @param actual Object
+   */
+  public static void failNotEquals(String message, Object expected, Object actual) {
+    fail(format(message, expected, actual));
+  }
+
+  /**
+   * Implementation Routine format.
+   *
+   * @param message String
+   * @param expected Object
+   * @param actual Object
+   * @return String
+   */
+  static String format(String message, Object expected, Object actual) {
+    String formatted = "";
+    if (message != null) formatted = message + " ";
+    return formatted + "expected:<" + expected + "> but was:<" + actual + ">";
+  }
 }

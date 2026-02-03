@@ -1,5 +1,3 @@
 package javax.servlet.http;
 
-public class HttpServlet {
-
-}
+public class HttpServlet {}

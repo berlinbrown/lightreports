@@ -3,12 +3,12 @@
  * Copyright (c) 2006-2007 Berlin Brown and botnode.com  All Rights Reserved
  *
  * http://www.opensource.org/licenses/bsd-license.php
-
+ *
  * All rights reserved.
-
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
-
+ *
  * * Redistributions of source code must retain the above copyright notice,
  * this list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
@@ -17,7 +17,7 @@
  * * Neither the name of the Botnode.com (Berlin Brown) nor
  * the names of its contributors may be used to endorse or promote
  * products derived from this software without specific prior written permission.
-
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -32,31 +32,31 @@
  *
  * Date: 1/5/2009
  *       7/15/2009 - Added Clojure 1.0, other performance fixes and cleanups.
- *       
- * Main Description: Light Log Viewer is a tool for making it easier to search log files.  
- * Light Log Viewer adds some text highlighting, quick key navigation to text files, simple graphs 
- * and charts for monitoring logs, file database to quickly navigate to files of interest, 
- * and HTML to PDF convert tool.  
- * Light Log was developed with a combination of Clojure 1.0, Java and Scala with use of libs, SWT 3.4, JFreeChart, iText. 
- * 
+ *
+ * Main Description: Light Log Viewer is a tool for making it easier to search log files.
+ * Light Log Viewer adds some text highlighting, quick key navigation to text files, simple graphs
+ * and charts for monitoring logs, file database to quickly navigate to files of interest,
+ * and HTML to PDF convert tool.
+ * Light Log was developed with a combination of Clojure 1.0, Java and Scala with use of libs, SWT 3.4, JFreeChart, iText.
+ *
  * Quickstart : the best way to run the Light Log viewer is to click on the win32 batch script light_logs.bat
  * (you may need to edit the Linux script for Unix/Linux environments).
  * Edit the win32 script to add more heap memory or other parameters.
- * 
+ *
  * The clojure source is contained in : HOME/src/octane
  * The java source is contained in :  HOME/src/java/src
- * 
+ *
  * To build the java source, see : HOME/src/java/build.xml and build_pdf_gui.xml
- * 
+ *
  * Metrics: (as of 7/15/2009) Light Log Viewer consists of 6500 lines of Clojure code, and contains wrapper code
  *  around the Java source.  There are 2000+ lines of Java code in the Java library for Light Log Viewer.
- *  
+ *
  * Additional Development Notes: The SWT gui and other libraries are launched from a dynamic classloader.  Clojure is also
  *   started from the same code, and reflection is used to dynamically initiate Clojure. See the 'start' package.  The binary
  *   code is contained in the octane_start.jar library.
- *   
+ *
  * Home Page: http://code.google.com/p/lighttexteditor/
- * 
+ *
  * Contact: Berlin Brown <berlin dot brown at gmail.com>
  *********************************************************************/
 package com.octane.network.clj;
@@ -71,110 +71,117 @@ import com.octane.start.services.ClassPathLoaderService;
  */
 public class OctaneServer implements Runnable {
 
-    private static final String START_GLOBALS   = "octane.network.octane_script_globals";
-    
-    private static final String START_NAMESPACE = "octane.network.octane_http_server";    
-    
-    private ClassLoader serverClassLoader;
-   
-    /////////////////////////////////////////////////////////////////
-    
-    /**
-     * Constructor for OctaneServer.
-     * @param cl ClassLoader
-     */
-    public OctaneServer(final ClassLoader cl) {
-        this.serverClassLoader = cl;
-    }
-    /**
-     * Constructor for OctaneServer.
-     */
-    public OctaneServer() {
-        ;
-    }
-    
-    /**
-     * Implementation Routine startClojure.
-     * @param cl ClassLoader
-     * @throws Exception
-     */
-    public static final void startClojure(final ClassLoader cl) throws Exception {
-                        
-        //////////////////////////////////
-        // Init the clojure main library
-        //////////////////////////////////
-        final Object symbolClojureMain = OctaneClojureScript.invokeSymbolCreate(cl, "clojure.main");
-        final Object varRequire        = OctaneClojureScript.invokeVarIntern(cl, OctaneClojureScript.invokeClojureNS(cl), OctaneClojureScript.invokeSymbolCreate(cl, "require"));
-        
-        OctaneClojureScript.invokeVarInvoke(cl, varRequire, symbolClojureMain);
-        
-        // Call require on our utility clojure code
-        // Set the variable spring-context for use in the clojure script
-        final Object findOrCreate = OctaneClojureScript.invokeFindOrCreate(cl, OctaneClojureScript.invokeSymbolCreate(cl, START_GLOBALS));
-        System.out.println("invoke NSFindOrCreate : " + findOrCreate);               
-        
-        // Launch the main window.
-        OctaneClojureScript.invokeVarInvoke(cl, varRequire, (OctaneClojureScript.invokeSymbolCreate(cl, START_NAMESPACE)));        
-    } // End of the Implementation Routine //
-    
-    /**
-     * @return the serverClassLoader
-     */
-    public final ClassLoader getServerClassLoader() {
-        return serverClassLoader;
-    }
+  private static final String START_GLOBALS = "octane.network.octane_script_globals";
 
-    /**
-     * @param serverClassLoader the serverClassLoader to set
-     */
-    public final void setServerClassLoader(ClassLoader serverClassLoader) {
-        this.serverClassLoader = serverClassLoader;
+  private static final String START_NAMESPACE = "octane.network.octane_http_server";
+
+  private ClassLoader serverClassLoader;
+
+  /////////////////////////////////////////////////////////////////
+
+  /**
+   * Constructor for OctaneServer.
+   *
+   * @param cl ClassLoader
+   */
+  public OctaneServer(final ClassLoader cl) {
+    this.serverClassLoader = cl;
+  }
+
+  /** Constructor for OctaneServer. */
+  public OctaneServer() {
+    ;
+  }
+
+  /**
+   * Implementation Routine startClojure.
+   *
+   * @param cl ClassLoader
+   * @throws Exception
+   */
+  public static final void startClojure(final ClassLoader cl) throws Exception {
+
+    //////////////////////////////////
+    // Init the clojure main library
+    //////////////////////////////////
+    final Object symbolClojureMain = OctaneClojureScript.invokeSymbolCreate(cl, "clojure.main");
+    final Object varRequire =
+        OctaneClojureScript.invokeVarIntern(
+            cl,
+            OctaneClojureScript.invokeClojureNS(cl),
+            OctaneClojureScript.invokeSymbolCreate(cl, "require"));
+
+    OctaneClojureScript.invokeVarInvoke(cl, varRequire, symbolClojureMain);
+
+    // Call require on our utility clojure code
+    // Set the variable spring-context for use in the clojure script
+    final Object findOrCreate =
+        OctaneClojureScript.invokeFindOrCreate(
+            cl, OctaneClojureScript.invokeSymbolCreate(cl, START_GLOBALS));
+    System.out.println("invoke NSFindOrCreate : " + findOrCreate);
+
+    // Launch the main window.
+    OctaneClojureScript.invokeVarInvoke(
+        cl, varRequire, (OctaneClojureScript.invokeSymbolCreate(cl, START_NAMESPACE)));
+  } // End of the Implementation Routine //
+
+  /**
+   * @return the serverClassLoader
+   */
+  public final ClassLoader getServerClassLoader() {
+    return serverClassLoader;
+  }
+
+  /**
+   * @param serverClassLoader the serverClassLoader to set
+   */
+  public final void setServerClassLoader(ClassLoader serverClassLoader) {
+    this.serverClassLoader = serverClassLoader;
+  }
+
+  /////////////////////////////////////////////////////////////////
+
+  /**
+   * Implementation Routine loadClasspath.
+   *
+   * @return ClassLoader
+   */
+  private static final ClassLoader loadClasspath() {
+
+    final ClassPathLoaderService service = new ClassPathLoaderService();
+    service.init();
+    final ClassLoader cl = service.loadClasspathNoSet(StartConsts.JAVA_LIBRARIES_NETWORK);
+    System.out.println("LoadService => " + service);
+    return cl;
+  }
+
+  /**
+   * Implementation Routine run.
+   *
+   * @see java.lang.Runnable#run()
+   */
+  public final void run() {
+    try {
+      startClojure(this.getServerClassLoader());
+    } catch (Exception e) {
+      e.printStackTrace();
     }
-    
-    /////////////////////////////////////////////////////////////////
-    
-    /**
-     * Implementation Routine loadClasspath.
-     * @return ClassLoader
-     */
-    private static final ClassLoader loadClasspath() {
-        
-        final ClassPathLoaderService service = new ClassPathLoaderService();        
-        service.init();
-        final ClassLoader cl = service.loadClasspathNoSet(StartConsts.JAVA_LIBRARIES_NETWORK);       
-        System.out.println("LoadService => " + service);
-        return cl;
-    }
-    
-    /**
-     * Implementation Routine run.
-     * @see java.lang.Runnable#run()
-     */
-    public final void run() {
-        try {
-            startClojure(this.getServerClassLoader());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } // End of the Run Implementation Routine //
-    
-    /**
-     * Implementation Routine createRunServer.
-     * @param cl ClassLoader
-     */
-    public static final void createRunServer(final ClassLoader cl) {
-        
-        final OctaneServer server = new OctaneServer(cl);        
-        final Thread threadServer = new Thread(server);
-        threadServer.start();
-        
-    } // End of the Implementation Routine //
-    
-    /**
-     * Implementation Routine createRunServer.
-     */
-    public static final void createRunServer() {               
-        createRunServer(loadClasspath());
-    }
-        
+  } // End of the Run Implementation Routine //
+
+  /**
+   * Implementation Routine createRunServer.
+   *
+   * @param cl ClassLoader
+   */
+  public static final void createRunServer(final ClassLoader cl) {
+
+    final OctaneServer server = new OctaneServer(cl);
+    final Thread threadServer = new Thread(server);
+    threadServer.start();
+  } // End of the Implementation Routine //
+
+  /** Implementation Routine createRunServer. */
+  public static final void createRunServer() {
+    createRunServer(loadClasspath());
+  }
 } // End of the Class //

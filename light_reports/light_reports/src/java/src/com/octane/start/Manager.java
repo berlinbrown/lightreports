@@ -1,15 +1,14 @@
-
 /********************************************************************
  *
  * Copyright (c) 2006-2007 Berlin Brown and botnode.com  All Rights Reserved
  *
  * http://www.opensource.org/licenses/bsd-license.php
-
+ *
  * All rights reserved.
-
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
-
+ *
  * * Redistributions of source code must retain the above copyright notice,
  * this list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
@@ -18,7 +17,7 @@
  * * Neither the name of the Botnode.com (Berlin Brown) nor
  * the names of its contributors may be used to endorse or promote
  * products derived from this software without specific prior written permission.
-
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -33,31 +32,31 @@
  *
  * Date: 1/5/2009
  *       7/15/2009 - Added Clojure 1.0, other performance fixes and cleanups.
- *       
- * Main Description: Light Log Viewer is a tool for making it easier to search log files.  
- * Light Log Viewer adds some text highlighting, quick key navigation to text files, simple graphs 
- * and charts for monitoring logs, file database to quickly navigate to files of interest, 
- * and HTML to PDF convert tool.  
- * Light Log was developed with a combination of Clojure 1.0, Java and Scala with use of libs, SWT 3.4, JFreeChart, iText. 
- * 
+ *
+ * Main Description: Light Log Viewer is a tool for making it easier to search log files.
+ * Light Log Viewer adds some text highlighting, quick key navigation to text files, simple graphs
+ * and charts for monitoring logs, file database to quickly navigate to files of interest,
+ * and HTML to PDF convert tool.
+ * Light Log was developed with a combination of Clojure 1.0, Java and Scala with use of libs, SWT 3.4, JFreeChart, iText.
+ *
  * Quickstart : the best way to run the Light Log viewer is to click on the win32 batch script light_logs.bat
  * (you may need to edit the Linux script for Unix/Linux environments).
  * Edit the win32 script to add more heap memory or other parameters.
- * 
+ *
  * The clojure source is contained in : HOME/src/octane
  * The java source is contained in :  HOME/src/java/src
- * 
+ *
  * To build the java source, see : HOME/src/java/build.xml and build_pdf_gui.xml
- * 
+ *
  * Metrics: (as of 7/15/2009) Light Log Viewer consists of 6500 lines of Clojure code, and contains wrapper code
  *  around the Java source.  There are 2000+ lines of Java code in the Java library for Light Log Viewer.
- *  
+ *
  * Additional Development Notes: The SWT gui and other libraries are launched from a dynamic classloader.  Clojure is also
  *   started from the same code, and reflection is used to dynamically initiate Clojure. See the 'start' package.  The binary
  *   code is contained in the octane_start.jar library.
- *   
+ *
  * Home Page: http://code.google.com/p/lighttexteditor/
- * 
+ *
  * Contact: Berlin Brown <berlin dot brown at gmail.com>
  *********************************************************************/
 
@@ -65,82 +64,76 @@ package com.octane.start;
 
 public class Manager {
 
-    /**
-     * Field NL.
-     */
-    public static final char NL = '\n';
+  /** Field NL. */
+  public static final char NL = '\n';
 
-    /**
-     * Field EMPTY.
-     * (value is """")
-     */
-    public static final String EMPTY = "";
-    
+  /** Field EMPTY. (value is """") */
+  public static final String EMPTY = "";
 
-    /**
-     * Implementation Routine trim.
-     * @param val String
-     * @return String
-     */
-    public static final String trim(final String val) {
-        return (null == val) ? EMPTY : val.trim();        
-    }
+  /**
+   * Implementation Routine trim.
+   *
+   * @param val String
+   * @return String
+   */
+  public static final String trim(final String val) {
+    return (null == val) ? EMPTY : val.trim();
+  }
 
-    /**
-     * Implementation Routine empty.
-     * @param val String
-     * @return boolean
-     */
-    public static final boolean isEmpty(final String val) {
-        return ((null == val) || (0 == val.length()));
+  /**
+   * Implementation Routine empty.
+   *
+   * @param val String
+   * @return boolean
+   */
+  public static final boolean isEmpty(final String val) {
+    return ((null == val) || (0 == val.length()));
+  }
 
-    }
+  /**
+   * Implementation Routine notEmpty.
+   *
+   * @param val String
+   * @return boolean
+   */
+  public static final boolean isNotEmpty(final String val) {
+    return !isEmpty(val);
+  }
 
-    /**
-     * Implementation Routine notEmpty.
-     * @param val String
-     * @return boolean
-     */
-    public static final boolean isNotEmpty(final String val) {
-        return !isEmpty(val);
-    }
-    
-    /////////////////////////////////////////////////////////////////
-    
-    /**
-     * Concenate a sequence of strings together.
-     * 
-     * @param str1in String
-     * @param str2in String
-     * @return String
-     */
-    public static final String concat(final String str1in, final String str2in) {
-        final String str1 = str1in == null ? EMPTY : str1in;
-        final String str2 = str2in == null ? EMPTY : str2in;
-        final StringBuffer buf = new StringBuffer(str1.length()+str2.length());
-        buf.append(str1);
-        buf.append(str2);        
-        return buf.toString();
-    }
-    
-    /**
-     * Concenate a sequence of strings together.
-     * 
-     * @param str1in String
-     * @param str2in String
-     * @param str3in String
-     * @return String
-     */
-    public static final String concat(final String str1in, final String str2in, final String str3in) {
-        final String str1 = str1in == null ? "" : str1in;
-        final String str2 = str2in == null ? "" : str2in;
-        final String str3 = str3in == null ? "" : str3in;
-        final StringBuffer buf = new StringBuffer(str1.length()+str2.length()+str3.length());
-        buf.append(str1);
-        buf.append(str2);
-        buf.append(str3);
-        return buf.toString();
-    }
-    
-    
+  /////////////////////////////////////////////////////////////////
+
+  /**
+   * Concenate a sequence of strings together.
+   *
+   * @param str1in String
+   * @param str2in String
+   * @return String
+   */
+  public static final String concat(final String str1in, final String str2in) {
+    final String str1 = str1in == null ? EMPTY : str1in;
+    final String str2 = str2in == null ? EMPTY : str2in;
+    final StringBuffer buf = new StringBuffer(str1.length() + str2.length());
+    buf.append(str1);
+    buf.append(str2);
+    return buf.toString();
+  }
+
+  /**
+   * Concenate a sequence of strings together.
+   *
+   * @param str1in String
+   * @param str2in String
+   * @param str3in String
+   * @return String
+   */
+  public static final String concat(final String str1in, final String str2in, final String str3in) {
+    final String str1 = str1in == null ? "" : str1in;
+    final String str2 = str2in == null ? "" : str2in;
+    final String str3 = str3in == null ? "" : str3in;
+    final StringBuffer buf = new StringBuffer(str1.length() + str2.length() + str3.length());
+    buf.append(str1);
+    buf.append(str2);
+    buf.append(str3);
+    return buf.toString();
+  }
 } // End of the Class //

@@ -3,12 +3,12 @@
  * Copyright (c) 2006-2007 Berlin Brown and botnode.com  All Rights Reserved
  *
  * http://www.opensource.org/licenses/bsd-license.php
-
+ *
  * All rights reserved.
-
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
-
+ *
  * * Redistributions of source code must retain the above copyright notice,
  * this list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
@@ -17,7 +17,7 @@
  * * Neither the name of the Botnode.com (Berlin Brown) nor
  * the names of its contributors may be used to endorse or promote
  * products derived from this software without specific prior written permission.
-
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -32,36 +32,37 @@
  *
  * Date: 1/5/2009
  *       7/15/2009 - Added Clojure 1.0, other performance fixes and cleanups.
- *       
- * Main Description: Light Log Viewer is a tool for making it easier to search log files.  
- * Light Log Viewer adds some text highlighting, quick key navigation to text files, simple graphs 
- * and charts for monitoring logs, file database to quickly navigate to files of interest, 
- * and HTML to PDF convert tool.  
- * Light Log was developed with a combination of Clojure 1.0, Java and Scala with use of libs, SWT 3.4, JFreeChart, iText. 
- * 
+ *
+ * Main Description: Light Log Viewer is a tool for making it easier to search log files.
+ * Light Log Viewer adds some text highlighting, quick key navigation to text files, simple graphs
+ * and charts for monitoring logs, file database to quickly navigate to files of interest,
+ * and HTML to PDF convert tool.
+ * Light Log was developed with a combination of Clojure 1.0, Java and Scala with use of libs, SWT 3.4, JFreeChart, iText.
+ *
  * Quickstart : the best way to run the Light Log viewer is to click on the win32 batch script light_logs.bat
  * (you may need to edit the Linux script for Unix/Linux environments).
  * Edit the win32 script to add more heap memory or other parameters.
- * 
+ *
  * The clojure source is contained in : HOME/src/octane
  * The java source is contained in :  HOME/src/java/src
- * 
+ *
  * To build the java source, see : HOME/src/java/build.xml and build_pdf_gui.xml
- * 
+ *
  * Metrics: (as of 7/15/2009) Light Log Viewer consists of 6500 lines of Clojure code, and contains wrapper code
  *  around the Java source.  There are 2000+ lines of Java code in the Java library for Light Log Viewer.
- *  
+ *
  * Additional Development Notes: The SWT gui and other libraries are launched from a dynamic classloader.  Clojure is also
  *   started from the same code, and reflection is used to dynamically initiate Clojure. See the 'start' package.  The binary
  *   code is contained in the octane_start.jar library.
- *   
+ *
  * Home Page: http://code.google.com/p/lighttexteditor/
- * 
+ *
  * Contact: Berlin Brown <berlin dot brown at gmail.com>
  *********************************************************************/
 
 package com.octane.util.junit.awtui;
 
+import com.octane.util.junit.runner.BaseTestRunner;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -71,50 +72,47 @@ import java.awt.Toolkit;
 import java.awt.image.ImageProducer;
 import java.net.URL;
 
-import com.octane.util.junit.runner.BaseTestRunner;
-
 public class Logo extends Canvas {
-	private Image fImage;
-	private int fWidth;
-	private int fHeight;
-	
-	public Logo() {
-		fImage= loadImage("logo.gif");
-		MediaTracker tracker= new MediaTracker(this);
-	  	tracker.addImage(fImage, 0);
-		try {
-			tracker.waitForAll();
-		} catch (Exception e) {
-		}
+  private Image fImage;
+  private int fWidth;
+  private int fHeight;
 
-		if (fImage != null) {
-			fWidth= fImage.getWidth(this);
-			fHeight= fImage.getHeight(this);
-		} else {
-			fWidth= 20;
-			fHeight= 20;
-		}
-		setSize(fWidth, fHeight);
-	}
-	
-	public Image loadImage(String name) {
-		Toolkit toolkit= Toolkit.getDefaultToolkit();
-		try {
-			URL url= BaseTestRunner.class.getResource(name);
-			return toolkit.createImage((ImageProducer) url.getContent());
-		} catch (Exception ex) {
-		}
-		return null;
-	}
-	
-	public void paint(Graphics g) {
-		paintBackground(g);
-		if (fImage != null)
-			g.drawImage(fImage, 0, 0, fWidth, fHeight, this);
-	}
-	
-	public void paintBackground( java.awt.Graphics g) {
-		g.setColor(SystemColor.control);
-		g.fillRect(0, 0, getBounds().width, getBounds().height);
-	}
+  public Logo() {
+    fImage = loadImage("logo.gif");
+    MediaTracker tracker = new MediaTracker(this);
+    tracker.addImage(fImage, 0);
+    try {
+      tracker.waitForAll();
+    } catch (Exception e) {
+    }
+
+    if (fImage != null) {
+      fWidth = fImage.getWidth(this);
+      fHeight = fImage.getHeight(this);
+    } else {
+      fWidth = 20;
+      fHeight = 20;
+    }
+    setSize(fWidth, fHeight);
+  }
+
+  public Image loadImage(String name) {
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    try {
+      URL url = BaseTestRunner.class.getResource(name);
+      return toolkit.createImage((ImageProducer) url.getContent());
+    } catch (Exception ex) {
+    }
+    return null;
+  }
+
+  public void paint(Graphics g) {
+    paintBackground(g);
+    if (fImage != null) g.drawImage(fImage, 0, 0, fWidth, fHeight, this);
+  }
+
+  public void paintBackground(java.awt.Graphics g) {
+    g.setColor(SystemColor.control);
+    g.fillRect(0, 0, getBounds().width, getBounds().height);
+  }
 }
