@@ -56,7 +56,6 @@ package com.toolkit.util.gui;
 /**
  * Set objects that were created from Clojure side of the application.
  *
- * @author AP417
  */
 public class WinPDFSettings {
 
@@ -91,3 +90,4 @@ public class WinPDFSettings {
     return (this.styledText != null);
   }
 } // End of the Class //
+
