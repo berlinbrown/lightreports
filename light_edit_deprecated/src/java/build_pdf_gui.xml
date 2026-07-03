@@ -61,7 +61,7 @@
     </target>
 		
 	<target name="run.gui" depends="clean,compile">
-		<java classname="com.ca.util.gui.SimplePFSXHtmlPDFWin">
+		<java classname="com.runner.util.gui.SimpleXHtmlPDFWin">
 			<classpath refid="classpath"/>
 		</java>
 	</target>
